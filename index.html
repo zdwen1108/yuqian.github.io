@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>煜谦贸易 - 全球水果供应链专业服务商</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .content_container{
+        max-width: 1920px;
+        min-width: 1280px;
+        padding-left: 80px;
+        padding-right: 80px;
+        margin: 0 auto;
+
+        /* 页面内容区域样式 */
+        .page-content {
+          display: none; /* 默认隐藏所有页面 */
+          animation: fadeIn 0.3s ease; /* 淡入动画 */
+        }
+
+        .page-content.active {
+          display: block; /* 显示当前页面 */
+        }
+      }
+      .infoCardList{
+        min-height: 750px;
+        padding-top: 77px;
+        padding-bottom: 52px;
+        position: relative;
+        box-sizing: border-box;
+
+        .news_title{
+          font-size: 28px;
+          font-weight: 700;
+          color: #222;
+          text-align: center;
+          margin-top: 0;
+          margin-bottom: 44px;
+        }
+
+        .button{
+          display: flow-root;
+          width: 170px;
+          height: 36px;
+          font-size: 18px;
+          margin: 42px auto 0;
+          color: #595959;
+          border: 1px solid grey;
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+        .button:hover{
+          color: #ffffff;
+          background-color: #000000;
+        }
+      }
+      .infoCardList::before{
+          content: "";
+          position: absolute;
+          top: 0;
+          z-index: -1;
+          left: calc(880px - 50vw);
+          width: 100vw;
+          height: 100%;
+          background-color: #eee;
+      }
+      
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div id="navbar-container"></div>
+    <!-- 页面内容 -->
+    <div class="content_container">
+      <!-- 主页 -->
+      <div class="page-content active" id="home-page">
+        <!-- 轮播容器 -->
+        <div id="carouselContainer"></div>
+        <div style="padding: 65px 0;">
+          <!-- 组件容器 -->
+          <div id="revolutionaryEvent1"></div>
+          <div id="revolutionaryEvent2"></div>
+        </div>
+        <div class="infoCardList">
+          <h1 class="news_title">新闻资讯</h1>
+          <!-- 信息卡片 -->
+          <div id="newsCardContainer"></div>
+          <button class="button" onclick="toCompanyNews()">查看更多</button>
+        </div>
+        <!-- 产品图片列表 -->
+        <div id="product-container" style="padding-top: 65px; padding-bottom: 65px;"></div>
+      </div>
+      <!-- 公司介绍 -->
+      <div class="page-content" id="company_introduce">
+        <h1>公司介绍</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 企业大事记 -->
+      <div class="page-content" id="company_events">
+        <h1>企业大事记</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 企业文化 -->
+      <div class="page-content" id="company_cultures">
+        <h1>企业文化</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 批发中心 -->
+      <div class="page-content" id="wholesale_center">
+        <h1>批发中心</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 旗下产品 -->
+      <div class="page-content" id="company_product">
+        <h1>旗下产品</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 公司新闻 -->
+      <div class="page-content" id="company_news">
+        <h1>公司新闻</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 媒体资源库 -->
+      <div class="page-content" id="media_sources">
+        <h1>媒体资源库</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+      <!-- 加入我们 -->
+      <div class="page-content" id="join_work">
+        <h1>加入我们</h1>
+        <p>这是服务介绍内容...</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div id="footer-container"></div>
+
+</body>
+</html>
+<script src="./js/index.js"></script>
+<!-- 引入并初始化导航栏 -->
+<script src="./components/navbar.js"></script>
+<!-- 引入并初始化轮播组件 -->
+<script src="./components/carousel.js"></script>
+<!-- 引入并初始化图片文字组件 -->
+<script src="./components/imageTextComponent.js"></script>
+<!-- 引入新闻资讯信息卡片组件 -->
+<script src="./components/InfoCardComponent.js"></script>
+<!-- 引入产品图片列表组件 -->
+<script src="./components/productImageList.js"></script>
+<!-- 引入并初始化页脚组件 -->
+<script src="./components/footer.js"></script>
+<script>
+
+  // 1. 定义页面路由与内容的映射关系
+  const pageRoutes = [
+    { route: '/home', title: '首页' },
+    { route: '/about', title: '关于我们' },
+    { route: '/about/company', title: '公司简介' },
+    { route: '/about/events', title: '煜谦大事记' },
+    { route: '/products', title: '旗下产品' },
+    { route: '/news', title: '联系我们' },
+    { route: '/contact', title: '联系我们' }
+  ];
+  // 初始化导航栏
+  const navbar = new Navbar({
+    containerId: 'navbar-container',
+    logo: {
+      text: {
+        zh: '煜谦贸易',
+        en: 'Yuqian Trading'
+      },
+      fontSize: '1.8rem',
+      // 图片相关配置
+      // image: 'path/to/logo.png',
+      // imageWidth: '120px',
+      // imageHeight: '50px'
+    },
+    defaultLang: 'zh',
+    itemFontSize: '18px',       // 菜单项字体大小
+    dropdownFontSize: '15px',   // 下拉项字体大小
+    menuItems: [
+      {
+        key: 'home',
+        zh: '首页',
+        en: 'Home',
+        route: '/',
+        hasDropdown: false
+      },
+      {
+        key: 'about',
+        zh: '关于我们',
+        en: 'About Us',
+        route: '/about',
+        hasDropdown: true,
+        dropdown: [
+          {
+            key: 'company',
+            zh: '公司简介',
+            en: 'Company',
+            route: '/about/company'
+          },
+          {
+            key: 'company',
+            zh: '煜谦大事记',
+            en: "Yüqian's Chronology of Events",
+            route: '/about/events'
+          }
+        ]
+      },
+      {
+        key: 'products',
+        zh: '旗下产品',
+        en: 'Products',
+        route: '/products',
+        hasDropdown: false,
+      },
+      {
+        key: 'news',
+        zh: '新闻公告',
+        en: 'News',
+        route: '/news',
+        hasDropdown: true,
+        dropdown: [
+          {
+            key: 'company',
+            zh: '公司新闻',
+            en: 'Company',
+            route: '/news'
+          },
+          {
+            key: 'team',
+            zh: '媒体资源库',
+            en: 'Team',
+            route: '/news'
+          }
+        ]
+      },
+      {
+        key: 'join',
+        zh: '加入我们',
+        en: 'Join Us',
+        route: '/join',
+        hasDropdown: false
+      }
+    ],
+    // 路由变化回调
+    onRouteChange: function(route) {
+      console.log('路由切换到:', route);
+      // 实际应用中可以在这里实现页面跳转逻辑
+      // 更新浏览器地址栏和历史记录
+      history.pushState({ route }, '', route);
+      // 更新页面内容
+      updatePageContent(route);
+    },
+    // 语言变化回调
+    onLangChange: function(lang) {
+      console.log('语言切换为:', lang);
+      // 可以在这里处理页面其他内容的语言切换
+    }
+  });
+
+  // 4. 根据路由更新页面内容
+  function updatePageContent(route) {
+    // 隐藏所有页面
+    document.querySelectorAll('.page-content').forEach(page => {
+      page.classList.remove('active');
+    });
+
+    // 显示当前路由对应的页面
+    const targetPage = document.querySelector(`.page-content[data-route="${route}"]`);
+    if (targetPage) {
+      targetPage.classList.add('active');
+      // 更新页面标题
+      const pageInfo = pageRoutes.find(item => item.route === route);
+      if (pageInfo) document.title = pageInfo.title;
+    } else {
+      // 路由不存在时显示404（可选）
+      console.log('页面不存在:', route);
+    }
+  }
+
+  // 初始化轮播组件
+  const myCarousel = new MediaCarousel({
+    containerId: 'carouselContainer',
+    width: '100%',
+    // height: '1340px',
+    autoPlay: true,
+    interval: 4000,
+    showIndicators: true,
+    showControls: true,
+    indicatorStyle: 'bar',  // 可选 'dot' 或 'bar'
+    controlStyle: 'rounded', // 可选 'default'、'rounded' 或 'outline'
+    items: [
+      // {
+      //   type: 'image',
+      //   url: 'https://picsum.photos/id/1015/1200/600',
+      //   alt: '山水风景'
+      // },
+      {
+        type: 'video',
+        url: './video/Promotional.m4v',
+        autoplay: true
+      },
+      // {
+      //   type: 'image',
+      //   url: 'https://picsum.photos/id/1016/1200/600',
+      //   alt: '山脉风景'
+      // }
+    ],
+    // 基础配置（小屏幕默认）
+    height: '40vh',
+    interval: 3000,
+    // 响应式断点配置
+    responsive: {
+      576: { // 平板及以上
+        height: '50vh',
+        interval: 4000,
+        showControls: true // 大屏幕显示控制按钮
+      },
+      1200: { // 桌面端
+        height: '100vh',
+        interval: 5000
+      }
+    }
+  });
+
+  // 初始化图片文字组件
+  const eventComponent = new imageTextComponent({
+    containerId: 'revolutionaryEvent1',
+    imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/index_tuwen_config/20240301_BnR28zcVaXvBSaC.jpg',
+    imageAlt: '重走革命摇篮井冈山活动合影',
+    title: '重走"革命摇篮"井冈山',
+    subtitle: '元气森林开启2024年春战计划',
+    detailUrl: '/revolutionary-event-detail.html',
+    // 可自定义尺寸
+    dimensions: {
+      width: '100%',
+      height: '420px',
+      imageWidth: '50%'
+    },
+    // 可自定义样式
+    styles: {
+      title: {
+        fontSize: '32px',
+        color: '#2c3e50',
+        marginBottom: '30px'
+      },
+      button: {
+        bgColor: '#f8f9fa',
+        borderColor: '#2c3e50',
+        hoverBgColor: '#2c3e50'
+      }
+    }
+  });
+
+  new imageTextComponent({
+    containerId: 'revolutionaryEvent2',
+    imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/index_tuwen_config/20240301_BnR28zcVaXvBSaC.jpg',
+    imageAlt: '重走革命摇篮井冈山活动合影',
+    title: '重走"革命摇篮"井冈山',
+    subtitle: '元气森林开启2024年春战计划',
+    detailUrl: '/revolutionary-event-detail.html',
+    // 可自定义尺寸
+    dimensions: {
+      width: '100%',
+      height: '520px',
+      imageWidth: '50%'
+    },
+    // 可自定义样式
+    styles: {
+      title: {
+        fontSize: '32px',
+        color: '#2c3e50',
+        marginBottom: '30px'
+      },
+      button: {
+        bgColor: '#f8f9fa',
+        borderColor: '#2c3e50',
+        hoverBgColor: '#2c3e50'
+      }
+    }
+  });
+
+
+  // 初始化新闻资讯列表
+  const newsCards = new InfoCardList('newsCardContainer', {
+    cardWidth: '32%',
+    imageHeight: '17vw',
+    marginBottom: '20px',
+    titleFontSize: '21px',
+    showTime: false,
+    clickable: true // 全局默认可点击
+  });
+
+  // 模拟接口返回数据（实际项目替换为真实接口）
+  const apiData = [
+    {
+      imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/img/20230831_z2c0LazwHFPoNY3.jpg',
+      title: '北海牧场即将推出小果泥酸奶黑加仑桑葚口味',
+      content: '北海牧场发布新品小果泥酸奶黑加仑桑葚口味，并在北京中华世纪坛举行小果泥酸奶新品游园会。',
+      time: '2025-10-25',
+      link: '/news/detail/123' // 跳转链接
+    },
+    {
+      imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/img/20230316_JtF63xaR65KtoLO.jpg',
+      title: '元气森林正式成立党委',
+      content: '为充分发挥党建引领作用，确保公司在正确发展道路上锐意进取、阔步前行，推动公司在新时期实现高质量发展，在北京市朝阳区委的关心下，在朝阳区委组织部的指导下，经中关村朝阳园工委批复，2023年2月8日正式成立中共元气森林(北京)食品科技集团有限公司委员会，在京隆重召开成立大会。',
+      time: '2025-10-24',
+      link: '/news/detail/124' // 跳转链接
+    }
+    // 可根据接口返回自动增加更多卡片
+  ];
+
+  // 渲染新闻资讯列表（数量由apiData长度决定）
+  newsCards.renderFromApi(apiData);
+
+  //跳转公司新闻页面
+  function toCompanyNews(){
+    window.location.href = '#';
+  }
+
+  // 初始化产品列表
+  const imageList = new ProductImageList({
+    container: '#product-container',
+    itemsPerRow: 5,          // 每行显示3个
+    spacing: 5,             // 水平间距15px
+    rowGap: 10,              // 垂直间距20px
+    showEllipsis: true,
+    imagePadding: 50,         // 图片内边距5px
+    imageAspectRatio: 4/2,   // 宽高比3:4（竖图）
+    imageFit: 'cover'
+  });
+
+  // 模拟产品数据
+  const mockProducts = Array.from({length: 6}, (_, i) => ({
+    id: i + 1,
+    imageUrl: `https://picsum.photos/300/400?random=${i + 1}`,
+    detailUrl: `/product/${i + 1}`,
+    altText: `产品${i + 1}`
+  }));
+
+  // 渲染列表
+  imageList.render(mockProducts);
+
+  // 页脚配置
+  new FooterComponent('footer-container', {
+    backgroundColor: '#121212',
+    titleColor: '#a2a2a2',
+    sectionDividerColor: '#444',
+    qrcodeSize: '100px',
+    socialGap: '25px',
+
+    titles: [
+        {
+          name: '关于我们',
+          subtitles: [
+            { text: '公司介绍', url: '#', clickable: true },
+            { text: '企业大事记', url: '#', clickable: true },
+            { text: '企业文化', url: '#', clickable: true },
+            { text: '工厂介绍', url: '#', clickable: true },
+            { text: '可持续发展', url: '#', clickable: true }
+          ]
+        },
+        {
+          name: '新闻公告',
+          subtitles: [
+            { text: '公司新闻', url: '#', clickable: true },
+            { text: '媒体资源库', url: '#', clickable: true }
+          ]
+        },
+        {
+          name: '联系我们',
+          subtitles: [
+            { text: '400-818-0032', url: 'tel:4008180032', clickable: false }
+          ]
+        }
+      ],
+      // 备案信息 (每个item是图片+文字的组合)
+      records: [
+        { 
+          image: null, // 可以不传图片
+          text: '京ICP备17027549号-4' 
+        },
+        { 
+          image: 'https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b883a071545849c8af20d7f836427517.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025105948DCEBDF0044F5D3C249C4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761965989&x-signature=4OaHPqoFDk2%2B003dEKhhC3kK3R8%3D',
+          text: '京公网安备11010502052391号' 
+        }
+      ]
+  });
+  
+</script>
