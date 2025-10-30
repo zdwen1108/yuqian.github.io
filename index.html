@@ -6,70 +6,81 @@
     <title>煜谦贸易 - 全球水果供应链专业服务商</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
-      
-      * {
+      *, :after, :before {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
       .content_container{
-        max-width: 1920px;
         min-width: 1280px;
-        padding-left: 80px;
-        padding-right: 80px;
         margin: 0 auto;
 
         /* 页面内容区域样式 */
         .page-content {
           display: none; /* 默认隐藏所有页面 */
           animation: fadeIn 0.3s ease; /* 淡入动画 */
+
+          .text_image_container{
+            padding: 65px 80px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+
+            .text_image_item{
+              position: relative;
+              left: 13%;
+              min-width: 1120px;
+              min-height: 400px;
+            }
+          }
         }
 
         .page-content.active {
           display: block; /* 显示当前页面 */
         }
-      }
-      .infoCardList{
-        min-height: 750px;
-        padding-top: 77px;
-        padding-bottom: 52px;
-        position: relative;
-        box-sizing: border-box;
-
-        .news_title{
-          font-size: 28px;
-          font-weight: 700;
-          color: #222;
-          text-align: center;
-          margin-top: 0;
-          margin-bottom: 44px;
-        }
-
-        .button{
-          display: flow-root;
-          width: 170px;
-          height: 36px;
-          font-size: 18px;
-          margin: 42px auto 0;
-          color: #595959;
-          border: 1px solid grey;
+        .infoCardList{
+          min-height: 750px;
+          padding-top: 77px;
+          padding-bottom: 52px;
+          position: relative;
           box-sizing: border-box;
-          cursor: pointer;
+          padding-right: 80px;
+          padding-left: 80px;
+  
+          .news_title{
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 44px;
+          }
+  
+          .button{
+            display: flow-root;
+            width: 170px;
+            height: 36px;
+            font-size: 18px;
+            margin: 42px auto 0;
+            color: #595959;
+            border: 1px solid grey;
+            box-sizing: border-box;
+            cursor: pointer;
+          }
+          .button:hover{
+            color: #ffffff;
+            background-color: #000000;
+          }
         }
-        .button:hover{
-          color: #ffffff;
-          background-color: #000000;
+        .infoCardList{
+          background-color: #eeeeee;
+          display: flex;
+          justify-content: center;
+          margin: 0 auto;
+          align-items: center;
+          flex-direction: column;
         }
-      }
-      .infoCardList::before{
-          content: "";
-          position: absolute;
-          top: 0;
-          z-index: -1;
-          left: calc(880px - 50vw);
-          width: 100vw;
-          height: 100%;
-          background-color: #eee;
       }
       
     </style>
@@ -83,10 +94,10 @@
       <div class="page-content active" id="home-page">
         <!-- 轮播容器 -->
         <div id="carouselContainer"></div>
-        <div style="padding: 65px 0;">
-          <!-- 组件容器 -->
-          <div id="revolutionaryEvent1"></div>
-          <div id="revolutionaryEvent2"></div>
+        <div class="text_image_container" style="padding: 65px 80px;">
+          <!-- 图片文字组件 -->
+          <div id="revolutionaryEvent1" class="text_image_item"></div>
+          <div id="revolutionaryEvent2" class="text_image_item"></div>
         </div>
         <div class="infoCardList">
           <h1 class="news_title">新闻资讯</h1>
@@ -95,7 +106,10 @@
           <button class="button" onclick="toCompanyNews()">查看更多</button>
         </div>
         <!-- 产品图片列表 -->
-        <div id="product-container" style="padding-top: 65px; padding-bottom: 65px;"></div>
+        <div id="product-container" style="padding: 65px 100px"></div>
+      
+        <!-- 合作商 -->
+        <div id="partnerCarousel"></div>
       </div>
       <!-- 公司介绍 -->
       <div class="page-content" id="company_introduce">
@@ -155,6 +169,8 @@
 <script src="./components/InfoCardComponent.js"></script>
 <!-- 引入产品图片列表组件 -->
 <script src="./components/productImageList.js"></script>
+<!-- 合作商列表组件 -->
+<script src="./components/partnerCarousel.js"></script>
 <!-- 引入并初始化页脚组件 -->
 <script src="./components/footer.js"></script>
 <script>
@@ -290,8 +306,7 @@
   // 初始化轮播组件
   const myCarousel = new MediaCarousel({
     containerId: 'carouselContainer',
-    width: '100%',
-    // height: '1340px',
+    width: '100vw',
     autoPlay: true,
     interval: 4000,
     showIndicators: true,
@@ -299,24 +314,23 @@
     indicatorStyle: 'bar',  // 可选 'dot' 或 'bar'
     controlStyle: 'rounded', // 可选 'default'、'rounded' 或 'outline'
     items: [
-      // {
-      //   type: 'image',
-      //   url: 'https://picsum.photos/id/1015/1200/600',
-      //   alt: '山水风景'
-      // },
       {
-        type: 'video',
-        url: './video/Promotional.m4v',
-        autoplay: true
+        type: 'image',
+        url: './sources/imgs/yuqian01.png',
+        alt: '水果'
       },
-      // {
-      //   type: 'image',
-      //   url: 'https://picsum.photos/id/1016/1200/600',
-      //   alt: '山脉风景'
-      // }
+      {
+        type: 'image',
+        url: './sources/imgs/yuqian02.png',
+      },
+      {
+        type: 'image',
+        url: './sources/imgs/yuqian03.png',
+        alt: '水果'
+      }
     ],
     // 基础配置（小屏幕默认）
-    height: '40vh',
+    height: 'auto',
     interval: 3000,
     // 响应式断点配置
     responsive: {
@@ -326,24 +340,24 @@
         showControls: true // 大屏幕显示控制按钮
       },
       1200: { // 桌面端
-        height: '100vh',
+        height: '70vh',
         interval: 5000
       }
     }
   });
 
   // 初始化图片文字组件
-  const eventComponent = new imageTextComponent({
+  new imageTextComponent({
     containerId: 'revolutionaryEvent1',
-    imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/index_tuwen_config/20240301_BnR28zcVaXvBSaC.jpg',
-    imageAlt: '重走革命摇篮井冈山活动合影',
-    title: '重走"革命摇篮"井冈山',
-    subtitle: '元气森林开启2024年春战计划',
+    imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
+    imageAlt: '煜谦集团携手合作伙伴',
+    title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
+    subtitle: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
     detailUrl: '/revolutionary-event-detail.html',
     // 可自定义尺寸
     dimensions: {
-      width: '100%',
-      height: '420px',
+      width: '74%',
+      height: '24vw',
       imageWidth: '50%'
     },
     // 可自定义样式
@@ -363,15 +377,15 @@
 
   new imageTextComponent({
     containerId: 'revolutionaryEvent2',
-    imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/index_tuwen_config/20240301_BnR28zcVaXvBSaC.jpg',
-    imageAlt: '重走革命摇篮井冈山活动合影',
-    title: '重走"革命摇篮"井冈山',
-    subtitle: '元气森林开启2024年春战计划',
+    imageUrl: './sources/imgs/zhunong.png',
+    imageAlt: '助力乡村振兴',
+    title: '特色产业 助力乡村振兴',
+    subtitle: '引进煜谦,打造精品水果产业园。',
     detailUrl: '/revolutionary-event-detail.html',
     // 可自定义尺寸
     dimensions: {
-      width: '100%',
-      height: '520px',
+      width: '74%',
+      height: '24vw',
       imageWidth: '50%'
     },
     // 可自定义样式
@@ -403,18 +417,25 @@
   // 模拟接口返回数据（实际项目替换为真实接口）
   const apiData = [
     {
-      imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/img/20230831_z2c0LazwHFPoNY3.jpg',
-      title: '北海牧场即将推出小果泥酸奶黑加仑桑葚口味',
-      content: '北海牧场发布新品小果泥酸奶黑加仑桑葚口味，并在北京中华世纪坛举行小果泥酸奶新品游园会。',
+      imageUrl: 'https://mediabluk.cnr.cn/img/cnr/CNRCDP/2022/1119/1a122fe04d8b2166884175996436803310.png?auth=61d54b0c56370ac68e7e1b5cf6d75dee',
+      title: '首批空运包机车厘子抵郑 京东生鲜携手煜谦集团全链路保障新鲜上市',
+      content: '11月16日，京东生鲜、七鲜超市、1号会员店联合以水果贸易为主营业务的国际贸易公司煜谦集团从产地包机空运的智利车厘子到达郑州。本次到货的智利车厘子共近万件，主要包含SANTINA和ROYALDAWN两大品种，为消费者提供更丰富的冬日新鲜水果选择。',
       time: '2025-10-25',
       link: '/news/detail/123' // 跳转链接
     },
     {
-      imageUrl: 'https://yuanqiguanwang2022.oss-cn-beijing.aliyuncs.com/img/20230316_JtF63xaR65KtoLO.jpg',
-      title: '元气森林正式成立党委',
-      content: '为充分发挥党建引领作用，确保公司在正确发展道路上锐意进取、阔步前行，推动公司在新时期实现高质量发展，在北京市朝阳区委的关心下，在朝阳区委组织部的指导下，经中关村朝阳园工委批复，2023年2月8日正式成立中共元气森林(北京)食品科技集团有限公司委员会，在京隆重召开成立大会。',
+      imageUrl: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/AA0OOA6ibPCnqJ6xuecI0ld3svLWealYUAcaUy9VtkxpU2PEqWxAdIiatFjZL5vvh3PGnKL10oFA9NcBsOXqn1Rg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0',
+      title: '煜谦葡提负责人谈葡萄新品种权，水果行业如何以品种破局？',
+      content: '8月底上海举办的2025中国国际水果展上，煜谦集团现场展示了其近年引入国内种植的专有葡萄品种秋脆（AUTUMNCRISP®）和甜蜜地球（Sweet Globe）品牌葡萄等，吸引了大量从业者关注。2024年，煜谦成为国内首家加入太阳世界Sun World俱乐部模式的经销合作伙伴，以及BLOOM FRESH公司的中国一级授权商。这两家行业领军企业的旗舰品种正是通过上述品牌进行市场推广。 ',
       time: '2025-10-24',
       link: '/news/detail/124' // 跳转链接
+    },
+    {
+      imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
+      title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
+      content: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
+      time: '2025-10-24',
+      link: '/news/detail/125' // 跳转链接
     }
     // 可根据接口返回自动增加更多卡片
   ];
@@ -430,25 +451,48 @@
   // 初始化产品列表
   const imageList = new ProductImageList({
     container: '#product-container',
-    itemsPerRow: 5,          // 每行显示3个
-    spacing: 5,             // 水平间距15px
-    rowGap: 10,              // 垂直间距20px
+    itemsPerRow: 6,          // 每行显示个数
+    spacing: 5,             // 水平间距px
+    rowGap: 10,              // 垂直间距px
     showEllipsis: true,
-    imagePadding: 50,         // 图片内边距5px
-    imageAspectRatio: 4/2,   // 宽高比3:4（竖图）
+    imagePadding: 40,         // 图片内边距5px
+    imageAspectRatio: 4/3,   // 宽高比3:4（竖图）
     imageFit: 'cover'
   });
 
   // 模拟产品数据
-  const mockProducts = Array.from({length: 6}, (_, i) => ({
-    id: i + 1,
-    imageUrl: `https://picsum.photos/300/400?random=${i + 1}`,
-    detailUrl: `/product/${i + 1}`,
-    altText: `产品${i + 1}`
-  }));
+  const mockProducts = [
+    {id: '', imageUrl: './sources/products/chelizi.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/grape.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/lanmei.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/pineapple.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/apple.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/citrusfruit.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/durian.png', detailUrl: ''},
+    {id: '', imageUrl: './sources/products/stonefruits.png', detailUrl: ''}
+  ]
 
   // 渲染列表
   imageList.render(mockProducts);
+
+  // 合作商列表
+  new PartnerMediaDisplay("partnerCarousel",
+    {
+      "media": [
+        {"name": "企业A", "logo": "https://picsum.photos/seed/partner1/200/80", "url": "https://example.com/1"},
+        {"name": "企业B", "logo": "https://picsum.photos/seed/partner2/200/80", "url": "https://example.com/2"},
+        {"name": "企业C", "logo": "https://picsum.photos/seed/partner3/200/80", "url": "https://example.com/3"},
+        {"name": "企业D", "logo": "https://picsum.photos/seed/partner4/200/80", "url": "https://example.com/4"},
+        {"name": "企业E", "logo": "https://picsum.photos/seed/partner5/200/80", "url": "https://example.com/5"},
+        {"name": "企业F", "logo": "https://picsum.photos/seed/partner6/200/80", "url": "https://example.com/6"}
+      ],
+      "scrollMode": false,
+      "itemWidth": 200,
+      "itemHeight": 100,
+      "autoPlayDelay": 2000,
+      "gap": 30
+    }
+  );
 
   // 页脚配置
   new FooterComponent('footer-container', {

@@ -22,7 +22,7 @@ class imageTextComponent{
     // 默认配置
     this.defaults = {
       dimensions: {
-        width: '1000px',
+        width: '32vw',
         height: '600px',
         imageWidth: '50%',
         marginBottom: '34px'
@@ -94,7 +94,7 @@ class imageTextComponent{
       display: flex;
       overflow: hidden;
       min-width: 1120px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px 0 rgba(0,0,0,.2);
     `;
 
     // 组件内部结构

@@ -25,17 +25,17 @@ class MediaCarousel {
       showIndicators: true,
       showControls: true,
       width: '100%',
-      height: '80vh', // 改为视口高度的50%，默认随页面缩放
+      height: 'auto', 
       indicatorStyle: 'dot',
       controlStyle: 'default',
       // 新增响应式断点配置（可选）
       responsive: {
         768: { // 屏幕宽度≥768px时的配置
-          height: '60vh',
+          height: 'auto',
           interval: 4000
         },
         1200: { // 屏幕宽度≥1200px时的配置
-          height: '70vh',
+          height: 'auto',
           interval: 5000
         }
       },

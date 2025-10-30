@@ -88,6 +88,7 @@ class InfoCardList {
     this.container.style.flexDirection = 'row';
     this.container.style.justifyContent = 'space-between';
     this.container.style.gap = this.globalOptions.cardGap;
+    this.container.style.maxWidth = '1780px'
   }
 
   /**
