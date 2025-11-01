@@ -91,7 +91,7 @@
     <!-- 页面内容 -->
     <div class="content_container">
       <!-- 主页 -->
-      <div class="page-content active" id="home-page">
+      <div class="page-content active" id="home-page" data-route="/">
         <!-- 轮播容器 -->
         <div id="carouselContainer"></div>
         <div class="text_image_container" style="padding: 65px 80px;">
@@ -112,42 +112,37 @@
         <div id="partnerCarousel"></div>
       </div>
       <!-- 公司介绍 -->
-      <div class="page-content" id="company_introduce">
+      <div class="page-content" id="company_introduce" data-route="/about/company">
         <h1>公司介绍</h1>
         <p>这是服务介绍内容...</p>
       </div>
       <!-- 企业大事记 -->
-      <div class="page-content" id="company_events">
+      <div class="page-content" id="company_events" data-route="/about/events">
         <h1>企业大事记</h1>
         <p>这是服务介绍内容...</p>
       </div>
       <!-- 企业文化 -->
-      <div class="page-content" id="company_cultures">
+      <div class="page-content" id="company_cultures" data-route="/about/company">
         <h1>企业文化</h1>
         <p>这是服务介绍内容...</p>
       </div>
-      <!-- 批发中心 -->
-      <div class="page-content" id="wholesale_center">
-        <h1>批发中心</h1>
-        <p>这是服务介绍内容...</p>
-      </div>
       <!-- 旗下产品 -->
-      <div class="page-content" id="company_product">
+      <div class="page-content" id="company_product" data-route="/products">
         <h1>旗下产品</h1>
         <p>这是服务介绍内容...</p>
       </div>
-      <!-- 公司新闻 -->
-      <div class="page-content" id="company_news">
+      <!-- 新闻公告 -->
+      <div class="page-content" id="company_news" data-route="/news">
         <h1>公司新闻</h1>
         <p>这是服务介绍内容...</p>
       </div>
       <!-- 媒体资源库 -->
-      <div class="page-content" id="media_sources">
+      <div class="page-content" id="media_sources" data-route="/media">
         <h1>媒体资源库</h1>
         <p>这是服务介绍内容...</p>
       </div>
       <!-- 加入我们 -->
-      <div class="page-content" id="join_work">
+      <div class="page-content" id="join_work" data-route="/join">
         <h1>加入我们</h1>
         <p>这是服务介绍内容...</p>
       </div>
@@ -158,7 +153,6 @@
 
 </body>
 </html>
-<script src="./js/index.js"></script>
 <!-- 引入并初始化导航栏 -->
 <script src="./components/navbar.js"></script>
 <!-- 引入并初始化轮播组件 -->
@@ -179,11 +173,12 @@
   const pageRoutes = [
     { route: '/home', title: '首页' },
     { route: '/about', title: '关于我们' },
-    { route: '/about/company', title: '公司简介' },
+    { route: '/about/company', title: '公司介绍' },
     { route: '/about/events', title: '煜谦大事记' },
     { route: '/products', title: '旗下产品' },
-    { route: '/news', title: '联系我们' },
-    { route: '/contact', title: '联系我们' }
+    { route: '/news', title: '新闻公告' },
+    { route: '/media', title: '媒体资源库' },
+    { route: '/join', title: '加入我们' }
   ];
   // 初始化导航栏
   const navbar = new Navbar({
