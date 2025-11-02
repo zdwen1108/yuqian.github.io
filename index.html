@@ -83,6 +83,108 @@
         align-items: center;
         flex-direction: column;
       }
+
+      /* 标题样式 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 71px;
+            color: #333;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #333;
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            display: flex;
+            
+        }
+        
+        /* 公司信息样式 */
+        .company-info{
+          padding-right: 62px;
+          position: relative;
+          width: 45%;
+        }
+        .company-info h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        
+        .company-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* 统计数据样式 */
+        .statistics {
+            display: flex;
+            margin-top: 83px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat-item {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .stat-divider {
+            width: 1px;
+            background-color: #ddd;
+            margin: 0 30px;
+        }
+        
+        /* 图片样式 */
+        .company-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .statistics {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .stat-divider {
+                width: 100%;
+                height: 1px;
+                margin: 10px 0;
+            }
+        }
       
     </style>
 </head>
@@ -114,8 +216,50 @@
       </div>
       <!-- 公司介绍 -->
       <div class="page-content" id="company_introduce" data-route="/about/company">
-        <h1>公司介绍</h1>
-        <p>这是服务介绍内容...</p>
+        <!-- 轮播容器 -->
+        <div id="introduceComponent"></div>
+        <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
+          <!-- 页面标题 -->
+          <h1 class="section-title" id="pageTitle">公司介绍</h1>
+          <!-- 主内容区 -->
+          <div class="main-content">
+            <!-- 左侧文字内容 -->
+            <div class="company-info">
+              <h2 id="companyName">上海煜谦贸易有限公司</h2>
+              
+              <p class="company-description" id="companyDesc1">
+                煜谦集团是以水果贸易为主营业务的国际贸易公司,通过22年的经营与积累，布局全球水果供应链，拥有丰富的国际水果供应链资源，成熟的国内外销售渠道和销售经验，以及专业的冷藏技术和国际物流运输体系。
+              </p>
+              
+              <p class="company-description" id="companyDesc2">
+                在全球，煜谦集团与众多知名的水果供应商建立了稳定、良好的贸易伙伴关系，拥有多款主营产品，包括车厘子、提子、蓝莓、柑橘、苹果、牛油果、核果、榴莲、椰青、火龙果等，全球直采覆盖北美洲、南美洲、欧洲、非洲、亚洲、大洋洲，构成了一幅丰富多彩的水果世界。
+              </p>
+              
+              <!-- 统计数据 -->
+              <div class="statistics">
+                <div class="stat-item">
+                  <div class="stat-number" id="statistic1">10+</div>
+                  <div class="stat-label" id="statistic1Label">覆盖全国超10个省、市、自治区</div>
+                </div>
+                
+                <div class="stat-divider"></div>
+                
+                <div class="stat-item">
+                  <div class="stat-number" id="statistic2">20+</div>
+                  <div class="stat-label" id="statistic2Label">出口美国、澳大利亚等20多个国家</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 右侧图片 -->
+            <div class="image-container" style="width: 55%;">
+                <img src="./sources/imgs/yuqian01.png" 
+                    alt="森林景观" 
+                    class="company-image" 
+                    id="companyImage">
+            </div>
+          </div>
+        </div>
       </div>
       <!-- 企业大事记 -->
       <div class="page-content" id="company_events" data-route="/about/events">
@@ -150,7 +294,7 @@
     </div>
 
     <!-- 页脚 -->
-    <div id="footer-container"></div>
+    <div id="footer-container" style="min-width: 1280px;"></div>
 
 </body>
 </html>
@@ -168,6 +312,9 @@
 <script src="./components/partnerCarousel.js"></script>
 <!-- 引入并初始化页脚组件 -->
 <script src="./components/footer.js"></script>
+<!-- 首页 -->
+<script src="./js/index.js"></script>
+<script src="./js/companyIntroduce.js"></script>
 <script>
 
   // 1. 定义页面路由与内容的映射关系
@@ -215,7 +362,7 @@
         dropdown: [
           {
             key: 'company',
-            zh: '公司简介',
+            zh: '公司介绍',
             en: 'Company',
             route: '/about/company'
           },
@@ -298,197 +445,6 @@
       console.log('页面不存在:', route);
     }
   }
-
-  // 初始化轮播组件
-  const myCarousel = new MediaCarousel({
-    containerId: 'carouselContainer',
-    width: '100vw',
-    autoPlay: true,
-    interval: 4000,
-    showIndicators: true,
-    showControls: true,
-    indicatorStyle: 'bar',  // 可选 'dot' 或 'bar'
-    controlStyle: 'rounded', // 可选 'default'、'rounded' 或 'outline'
-    items: [
-      {
-        type: 'image',
-        url: './sources/imgs/yuqian01.png',
-        alt: '水果'
-      },
-      {
-        type: 'image',
-        url: './sources/imgs/yuqian02.png',
-      },
-      {
-        type: 'image',
-        url: './sources/imgs/yuqian03.png',
-        alt: '水果'
-      }
-    ],
-    // 基础配置（小屏幕默认）
-    height: 'auto',
-    interval: 3000,
-    // 响应式断点配置
-    responsive: {
-      576: { // 平板及以上
-        height: '50vh',
-        interval: 4000,
-        showControls: true // 大屏幕显示控制按钮
-      },
-      1200: { // 桌面端
-        height: '70vh',
-        interval: 5000
-      }
-    }
-  });
-
-  // 初始化图片文字组件
-  new imageTextComponent({
-    containerId: 'revolutionaryEvent1',
-    imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
-    imageAlt: '煜谦集团携手合作伙伴',
-    title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
-    subtitle: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
-    detailUrl: '/revolutionary-event-detail.html',
-    // 可自定义尺寸
-    dimensions: {
-      width: '74%',
-      height: '24vw',
-      imageWidth: '50%'
-    },
-    // 可自定义样式
-    styles: {
-      title: {
-        fontSize: '32px',
-        color: '#2c3e50',
-        marginBottom: '30px'
-      },
-      button: {
-        bgColor: '#f8f9fa',
-        borderColor: '#2c3e50',
-        hoverBgColor: '#2c3e50'
-      }
-    }
-  });
-
-  new imageTextComponent({
-    containerId: 'revolutionaryEvent2',
-    imageUrl: './sources/imgs/zhunong.png',
-    imageAlt: '助力乡村振兴',
-    title: '特色产业 助力乡村振兴',
-    subtitle: '引进煜谦,打造精品水果产业园。',
-    detailUrl: '/revolutionary-event-detail.html',
-    // 可自定义尺寸
-    dimensions: {
-      width: '74%',
-      height: '24vw',
-      imageWidth: '50%'
-    },
-    // 可自定义样式
-    styles: {
-      title: {
-        fontSize: '32px',
-        color: '#2c3e50',
-        marginBottom: '30px'
-      },
-      button: {
-        bgColor: '#f8f9fa',
-        borderColor: '#2c3e50',
-        hoverBgColor: '#2c3e50'
-      }
-    }
-  });
-
-
-  // 初始化新闻资讯列表
-  const newsCards = new InfoCardList('newsCardContainer', {
-    cardWidth: '32%',
-    imageHeight: '17vw',
-    marginBottom: '20px',
-    titleFontSize: '21px',
-    showTime: false,
-    clickable: true // 全局默认可点击
-  });
-
-  // 模拟接口返回数据（实际项目替换为真实接口）
-  const apiData = [
-    {
-      imageUrl: 'https://mediabluk.cnr.cn/img/cnr/CNRCDP/2022/1119/1a122fe04d8b2166884175996436803310.png?auth=61d54b0c56370ac68e7e1b5cf6d75dee',
-      title: '首批空运包机车厘子抵郑 京东生鲜携手煜谦集团全链路保障新鲜上市',
-      content: '11月16日，京东生鲜、七鲜超市、1号会员店联合以水果贸易为主营业务的国际贸易公司煜谦集团从产地包机空运的智利车厘子到达郑州。本次到货的智利车厘子共近万件，主要包含SANTINA和ROYALDAWN两大品种，为消费者提供更丰富的冬日新鲜水果选择。',
-      time: '2025-10-25',
-      link: '/news/detail/123' // 跳转链接
-    },
-    {
-      imageUrl: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/AA0OOA6ibPCnqJ6xuecI0ld3svLWealYUAcaUy9VtkxpU2PEqWxAdIiatFjZL5vvh3PGnKL10oFA9NcBsOXqn1Rg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0',
-      title: '煜谦葡提负责人谈葡萄新品种权，水果行业如何以品种破局？',
-      content: '8月底上海举办的2025中国国际水果展上，煜谦集团现场展示了其近年引入国内种植的专有葡萄品种秋脆（AUTUMNCRISP®）和甜蜜地球（Sweet Globe）品牌葡萄等，吸引了大量从业者关注。2024年，煜谦成为国内首家加入太阳世界Sun World俱乐部模式的经销合作伙伴，以及BLOOM FRESH公司的中国一级授权商。这两家行业领军企业的旗舰品种正是通过上述品牌进行市场推广。 ',
-      time: '2025-10-24',
-      link: '/news/detail/124' // 跳转链接
-    },
-    {
-      imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
-      title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
-      content: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
-      time: '2025-10-24',
-      link: '/news/detail/125' // 跳转链接
-    }
-    // 可根据接口返回自动增加更多卡片
-  ];
-
-  // 渲染新闻资讯列表（数量由apiData长度决定）
-  newsCards.renderFromApi(apiData);
-
-  //跳转公司新闻页面
-  function toCompanyNews(){
-    window.location.href = '#';
-  }
-
-  // 初始化产品列表
-  const imageList = new ProductImageList({
-    container: '#product-container',
-    itemsPerRow: 6,          // 每行显示个数
-    spacing: 5,             // 水平间距px
-    rowGap: 10,              // 垂直间距px
-    showEllipsis: true,
-    imagePadding: 40,         // 图片内边距5px
-    imageAspectRatio: 4/3,   // 宽高比3:4（竖图）
-    imageFit: 'cover'
-  });
-
-  // 模拟产品数据
-  const mockProducts = [
-    {id: '', imageUrl: './sources/products/chelizi.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/grape.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/lanmei.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/pineapple.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/apple.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/citrusfruit.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/durian.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/stonefruits.png', detailUrl: ''}
-  ]
-
-  // 渲染列表
-  imageList.render(mockProducts);
-
-  // 合作商列表
-  new PartnerMediaDisplay("partnerCarousel",
-    {
-      "media": [
-        {"name": "企业A", "logo": "https://picsum.photos/seed/partner1/200/80", "url": "https://example.com/1"},
-        {"name": "企业B", "logo": "https://picsum.photos/seed/partner2/200/80", "url": "https://example.com/2"},
-        {"name": "企业C", "logo": "https://picsum.photos/seed/partner3/200/80", "url": "https://example.com/3"},
-        {"name": "企业D", "logo": "https://picsum.photos/seed/partner4/200/80", "url": "https://example.com/4"},
-        {"name": "企业E", "logo": "https://picsum.photos/seed/partner5/200/80", "url": "https://example.com/5"},
-        {"name": "企业F", "logo": "https://picsum.photos/seed/partner6/200/80", "url": "https://example.com/6"}
-      ],
-      "scrollMode": false,
-      "itemWidth": 200,
-      "itemHeight": 100,
-      "autoPlayDelay": 2000,
-      "gap": 30
-    }
-  );
 
   // 页脚配置
   new FooterComponent('footer-container', {
