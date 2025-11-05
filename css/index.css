@@ -1,0 +1,92 @@
+.content_container{
+    min-width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+/* 页面内容区域样式 */
+.page-content {
+    display: none; /* 默认隐藏所有页面 */
+    animation: fadeIn 0.3s ease; /* 淡入动画 */
+
+    .text_image_container{
+        padding: 65px 80px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+
+        .text_image_item{
+        position: relative;
+        left: 13%;
+        min-width: 1120px;
+        min-height: 400px;
+        }
+    }
+}
+
+.page-content.active {
+display: block; /* 显示当前页面 */
+}
+.infoCardList{
+    min-height: 750px;
+    padding-top: 77px;
+    padding-bottom: 52px;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 80px;
+    padding-left: 80px;
+
+    .news_title{
+        font-size: 28px;
+        font-weight: 700;
+        color: #222;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 44px;
+    }
+
+    .button{
+        display: flow-root;
+        width: 170px;
+        height: 36px;
+        font-size: 18px;
+        margin: 42px auto 0;
+        color: #595959;
+        border: 1px solid grey;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .button:hover{
+        color: #ffffff;
+        background-color: #000000;
+    }
+}
+.infoCardList{
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* 标题样式 */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 71px;
+    color: #333;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #333;
+}
