@@ -99,6 +99,34 @@ new MediaCarousel({
     }
   });
 
+  new imageTextComponent({
+    containerId: 'revolutionaryEvent3',
+    imageUrl: './sources/imgs/zhunong.png',
+    imageAlt: '助力乡村振兴',
+    title: '特色产业 助力乡村振兴',
+    subtitle: '引进煜谦,打造精品水果产业园。',
+    detailUrl: '/revolutionary-event-detail.html',
+    // 可自定义尺寸
+    dimensions: {
+      width: '74%',
+      height: '24vw',
+      imageWidth: '50%'
+    },
+    // 可自定义样式
+    styles: {
+      title: {
+        fontSize: '32px',
+        color: '#2c3e50',
+        marginBottom: '30px'
+      },
+      button: {
+        bgColor: '#f8f9fa',
+        borderColor: '#2c3e50',
+        hoverBgColor: '#2c3e50'
+      }
+    }
+  });
+
 
   // 初始化新闻资讯列表
   const newsCards = new InfoCardList('newsCardContainer', {
