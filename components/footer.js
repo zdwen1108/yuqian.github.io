@@ -86,26 +86,14 @@ class FooterComponent {
       socials: [
         { 
           type: 'icon',
-          icon: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/a35ac011590c43e392d51dea8fc31156.png~tplv-a9rns2rl98-24-95-exif:960:960.png?rcl=20251025095443E7340E82C53DA8D0516B&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761962083&x-signature=GgJAYM3PcS8kRtDDqZVanVN8vAY%3D',
-          qrcode: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/904f0a37489246a19cbc929bbd7f0440.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025100029B984D57322C8E6C8D0EA&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761962430&x-signature=8vcTgWl3KsmNngobwip%2B0Ws9eKg%3D',
-          url: '#'
-        },
-        { 
-          type: 'icon',
-          icon: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/c32ad35d5a584504a3b5fa00ac795bbe.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025100029B984D57322C8E6C8D0EA&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761962430&x-signature=s8QEXkQTB6JHmDJERoEhbFLaI8M%3D',
-          qrcode: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/904f0a37489246a19cbc929bbd7f0440.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025100029B984D57322C8E6C8D0EA&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761962430&x-signature=8vcTgWl3KsmNngobwip%2B0Ws9eKg%3D',
-          url: '#'
-        },
-        { 
-          type: 'icon',
-          icon: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/11f5a1bbda1d4bf3b4c4091726663869.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025102510162461BC3AB697259E7EACE6&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761963384&x-signature=mJFsHxBvFqcaYmG5B64t2o1HQm4%3D',
-          qrcode: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/57edcb5477174886b5b961586e70b4c0.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025102510162461BC3AB697259E7EACE6&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761963384&x-signature=F8qy5ZiYSiJsxIZoKgArWlXLR%2Bw%3D',
+          icon: '',
+          qrcode: '',
           url: '#'
         },
         { 
           type: 'text',
           text: '小红书',
-          qrcode: 'https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/7c8789e6ab674b269ec3077758bef6bf.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=2025102510162461BC3AB697259E7EACE6&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761963384&x-signature=ZLbWkKt6kQlxsQw6WpTVhjPIIVA%3D',
+          qrcode: '',
           url: '#'
         }
       ],

@@ -198,22 +198,3 @@ new MediaCarousel({
 
   // 渲染列表
   imageList.render(mockProducts);
-
-  // 合作商列表
-  new PartnerMediaDisplay("partnerCarousel",
-    {
-      "media": [
-        {"name": "企业A", "logo": "https://picsum.photos/seed/partner1/200/80", "url": "https://example.com/1"},
-        {"name": "企业B", "logo": "https://picsum.photos/seed/partner2/200/80", "url": "https://example.com/2"},
-        {"name": "企业C", "logo": "https://picsum.photos/seed/partner3/200/80", "url": "https://example.com/3"},
-        {"name": "企业D", "logo": "https://picsum.photos/seed/partner4/200/80", "url": "https://example.com/4"},
-        {"name": "企业E", "logo": "https://picsum.photos/seed/partner5/200/80", "url": "https://example.com/5"},
-        {"name": "企业F", "logo": "https://picsum.photos/seed/partner6/200/80", "url": "https://example.com/6"}
-      ],
-      "scrollMode": false,
-      "itemWidth": 200,
-      "itemHeight": 100,
-      "autoPlayDelay": 2000,
-      "gap": 30
-    }
-  );
