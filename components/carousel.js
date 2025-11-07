@@ -136,7 +136,7 @@ class MediaCarousel {
       .carousel-slide video {
         width: 100%;
         height: 100%;
-        object-fit: fill; /* 保持比例并填充容器，超出部分裁剪 */
+        object-fit: cover; /* 保持比例并填充容器，超出部分裁剪 */
         object-position: center; /* 居中显示 */
       }
       
