@@ -117,6 +117,8 @@
   <link href="./css/join.css" rel="stylesheet">
   <!-- 公司新闻页样式 -->
   <link rel="stylesheet" href="./css/companyNews.css">
+  <!-- 新闻详情页 -->
+  <link rel="stylesheet" href="./css/new_detail.css">
 </head>
 
 <body>
@@ -422,13 +424,9 @@
       </div>
     </div>
     <!-- 新闻详情页 -->
-    <div class="page-content " id="company_news_detail" data-route="/news">
-      <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
-        <h1 class="section-title" id="pageTitle">
-          <span class="en hidden">Company News</span>
-          <span class="zh">公司新闻详情</span>
-        </h1>
-      </div>
+    <div class="page-content " id="company_news_detail" data-route="/news/detail">
+      <!-- 顶部背景图 -->
+      <div id="newsDetailTopImage"></div>
     </div>
     <!-- 媒体资源库 -->
     <div class="page-content" id="media_sources" data-route="/media">
@@ -792,6 +790,8 @@
 <script src="./js/compayEvents.js"></script>
 <!-- 公司新闻页 -->
 <script src="./js/companyNews.js"></script>
+<!-- 新闻详情页 -->
+ <script src="./js/newDetail.js"></script>
 <!-- 加入我们 -->
 <script src="./js/join.js"></script>
 <script>
@@ -891,7 +891,6 @@
     ],
     // 路由变化回调
     onRouteChange: function (route) {
-      console.log('路由切换到:', route);
       // 实际应用中可以在这里实现页面跳转逻辑
       // 更新浏览器地址栏和历史记录
       history.pushState({ route }, '', route);
@@ -914,7 +913,7 @@
     }
   });
 
-  // 4. 根据路由更新页面内容
+  // 根据路由更新页面内容
   function updatePageContent(route) {
     // 隐藏所有页面
     document.querySelectorAll('.page-content').forEach(page => {
@@ -932,6 +931,7 @@
       // 路由不存在时显示404（可选）
       console.log('页面不存在:', route);
     }
+    scrollToTop();
   }
 
   // 页脚配置
@@ -984,11 +984,27 @@
 
   //跳转公司新闻页面
   function toCompanyNews() {
-    window.location.href = '/news';
+    const route = '/news';
+    // 更新浏览器地址栏和历史记录
+    history.pushState({ route }, '', route);
+    updatePageContent(route);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     localStorage.removeItem('language')
   });
+
+  // 滚动到顶部的工具函数
+  function scrollToTop() {
+    // 方案1：直接滚动（大部分浏览器支持）
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto' // 直接跳转，无动画（如需动画可改为 'smooth'）
+    });
+
+    // 兼容老旧浏览器
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
 
 </script>

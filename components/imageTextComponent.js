@@ -8,6 +8,7 @@ class imageTextComponent{
    * @param {string} options.title - 大标题文本
    * @param {string} options.subtitle - 副标题/内容文本
    * @param {string} options.detailUrl - 详情页链接
+   * @param {string} options.detailId - 详情页ID
    * @param {Object} [options.dimensions] - 尺寸配置
    * @param {string} [options.dimensions.width] - 组件总宽度 (默认: '1000px')
    * @param {string} [options.dimensions.height] - 组件总高度 (默认: '600px')
@@ -80,8 +81,13 @@ class imageTextComponent{
   render() {
     const { 
       imageUrl, imageAlt, title_zh, title_en, subtitle_zh, subtitle_en, detailUrl, 
-      dimensions, styles 
+      dimensions, styles ,detailId
     } = this.config;
+
+    // 构建完整详情链接
+    const fullDetailUrl = detailId
+      ? `${detailUrl}${detailUrl.includes('?') ? '&' : '?'}id=${detailId}`
+      : detailUrl;
 
     // 计算内容区宽度
     const contentWidth = `calc(100% - ${dimensions.imageWidth})`;
@@ -146,7 +152,8 @@ class imageTextComponent{
         <span class="zh">${subtitle_zh}</span>
         </p>
         
-        <a href="${detailUrl}" class="detail-button" style="
+        <button class="detail-button" data-detail-url="${fullDetailUrl}"
+        style="
           width: ${styles.button.width};
           height: ${styles.button.height};
           display: flex;
@@ -160,7 +167,7 @@ class imageTextComponent{
           box-sizing: border-box;
           transition: all 0.3s ease;
           margin-top: 20px;
-        ">了解详情</a>
+        ">了解详情</button>
       </div>
     `;
 
@@ -195,8 +202,7 @@ class imageTextComponent{
     const button = this.container.querySelector('.detail-button');
     if (button) {
       button.addEventListener('click', (e) => {
-        console.log('跳转到详情页:', this.config.detailUrl);
-        // 可添加自定义跳转逻辑
+        navigateToNewsDetail(this.config.detailId)
       });
     }
   }

@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     subtitle_zh: '10 月 24 日，智利周首天，我们和现场观众一起见证了 “Prizeking 云南蓝莓上市启动仪式”。',
     subtitle_en: 'On October 24th, the first day of Chile Week, we witnessed the "Prizeking Yunnan Blueberry Launch Ceremony" together with the on-site audience.',
     detailUrl: '/news',
+    detailId: '1',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     subtitle_zh: '9 月 9 日，一场超燃的 “甜蜜地球™” 上市发布会暨国际经销商大会在“醉美滁州”火热开启！',
     subtitle_en: `On September 9th, an exciting "Sweet Earth™" launch conference and international distributors' conference kicked off in "Charming Chuzhou"!`,
     detailUrl: '/news',
+    detailId: '3',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -112,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     subtitle_zh: '2025 年 8 月 30 日，全球高端蓝莓品牌 OZBLU 携手永辉超市与煜谦集团，于龙湖・上海奉贤天街隆重举办 “三曜共聚・鲜启蓝莓新势力” 蓝莓开季盛典。',
     subtitle_en: 'On August 30, 2025, the global high-end blueberry brand OZBLU, together with Yonghui Supermarket and Yuqian Group, grandly held the "Three Brightness Gathered · Freshly Launching the New Force of Blueberries" blueberry season-opening ceremony at Longfor · Shanghai Fengxian Tianjie.',
     detailUrl: '/news',
+    detailId: '5',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -147,31 +150,31 @@ document.addEventListener('DOMContentLoaded', function () {
   // 模拟接口返回数据（实际项目替换为真实接口）
   const apiData = [
     {
-        imageUrl: './sources/imgs/companyNews/lanbaoshi.jpg',
-        title_zh: 'IFG六品种合法化项目申请已正式截止',
-        title_en: 'The application for the IFG six-variety legalization project has officially closed.',
-        description_zh: 'IFG 六品种 (以商标 SWEET SAPPHIRE™、甜蜜蓝宝石™销售) 合法化计划的申请窗口现已关闭。BLOOM FRESH 感谢所有在此期间提出合法化申请的种植者，以及我们的合作伙伴百果种业、好果云和煜谦农业，为支持合法、安全、高品质和繁荣的中国鲜食葡萄行业所做的不懈努力。我们将随后发布关于我们努力保护和支持该品种、品牌的进一步信息。',
-        description_en: 'The application window for the legalization plan of the six IFG varieties (sold under the trademarks SWEET SAPPHIRE™ and 甜蜜蓝宝石™) is now closed. BLOOM FRESH would like to thank all growers who submitted legalization applications during this period, as well as our partners Baiguo Seed Industry, Haoguo Cloud, and Yuqian Agriculture, for their unremitting efforts in supporting a legal, safe, high-quality, and prosperous Chinese fresh table grape industry. We will subsequently release further information on our efforts to protect and support these varieties and brands.',
-        time: '2025-11-4',
-        link: '/news/detail/2' 
+      imageUrl: './sources/imgs/companyNews/lanbaoshi.jpg',
+      title_zh: 'IFG六品种合法化项目申请已正式截止',
+      title_en: 'The application for the IFG six-variety legalization project has officially closed.',
+      description_zh: 'IFG 六品种 (以商标 SWEET SAPPHIRE™、甜蜜蓝宝石™销售) 合法化计划的申请窗口现已关闭。BLOOM FRESH 感谢所有在此期间提出合法化申请的种植者，以及我们的合作伙伴百果种业、好果云和煜谦农业，为支持合法、安全、高品质和繁荣的中国鲜食葡萄行业所做的不懈努力。我们将随后发布关于我们努力保护和支持该品种、品牌的进一步信息。',
+      description_en: 'The application window for the legalization plan of the six IFG varieties (sold under the trademarks SWEET SAPPHIRE™ and 甜蜜蓝宝石™) is now closed. BLOOM FRESH would like to thank all growers who submitted legalization applications during this period, as well as our partners Baiguo Seed Industry, Haoguo Cloud, and Yuqian Agriculture, for their unremitting efforts in supporting a legal, safe, high-quality, and prosperous Chinese fresh table grape industry. We will subsequently release further information on our efforts to protect and support these varieties and brands.',
+      time: '2025-11-4',
+      link: '/news/detail/2'
     },
     {
-        imageUrl: './sources/imgs/companyNews/avocado_port.png',
-        title_zh: '新季2025-2026年度第一柜智利牛油果靠港',
-        title_en: 'The first container of Chilean avocados for the new 2025-2026 season has arrived at the port.',
-        description_zh: '9 月 8 日，煜谦集团 2025-2026 产季第一柜智利牛油果靠上海港。这也是新产季到达中国市场的第一柜智利牛油果。作为中国主要的牛油果进口商和分销商，目前，煜谦集团在全国十二个城市设有档口及分仓，并在北京，上海，广州等主要城市拥有自建的牛油果催熟库。形成了批发，零售，餐饮，电商等多渠道体系齐头并进的全国牛油果产业布局。',
-        description_en: "On September 8th, Yuqian Group's first container of Chilean avocados for the 2025-2026 season arrived at Shanghai Port. This is also the first container of Chilean avocados to reach the Chinese market in the new season. As a major avocado importer and distributor in China, Yuqian Group currently has stalls and warehouses in twelve cities across the country, and owns self-built avocado ripening facilities in major cities such as Beijing, Shanghai, and Guangzhou. It has formed a nationwide avocado industry layout with multiple channels including wholesale, retail, catering, and e-commerce advancing in parallel.",
-        time: '2025-9-9',
-        link: '/news/detail/4' // 跳转链接
+      imageUrl: './sources/imgs/companyNews/avocado_port.png',
+      title_zh: '新季2025-2026年度第一柜智利牛油果靠港',
+      title_en: 'The first container of Chilean avocados for the new 2025-2026 season has arrived at the port.',
+      description_zh: '9 月 8 日，煜谦集团 2025-2026 产季第一柜智利牛油果靠上海港。这也是新产季到达中国市场的第一柜智利牛油果。作为中国主要的牛油果进口商和分销商，目前，煜谦集团在全国十二个城市设有档口及分仓，并在北京，上海，广州等主要城市拥有自建的牛油果催熟库。形成了批发，零售，餐饮，电商等多渠道体系齐头并进的全国牛油果产业布局。',
+      description_en: "On September 8th, Yuqian Group's first container of Chilean avocados for the 2025-2026 season arrived at Shanghai Port. This is also the first container of Chilean avocados to reach the Chinese market in the new season. As a major avocado importer and distributor in China, Yuqian Group currently has stalls and warehouses in twelve cities across the country, and owns self-built avocado ripening facilities in major cities such as Beijing, Shanghai, and Guangzhou. It has formed a nationwide avocado industry layout with multiple channels including wholesale, retail, catering, and e-commerce advancing in parallel.",
+      time: '2025-9-9',
+      link: '/news/detail/4' // 跳转链接
     },
     {
-        imageUrl: './sources/imgs/companyNews/cherry.png',
-        title_zh: '四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记',
-        title_en: 'Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi',
-        description_zh: '2025 年1月 24 日 星期五 雪,冬日垫伏:在冻土下埋下甜蜜的梦 今天基地又落雪了,整片园子像盖了白棉被,拨开雪层摸了摸树干,底下的根系正憋着劲往下钻 -- 零下 15℃的冻土下,这些「沉睡的勇士,正把寒冷化作养分,每一道根须的伸展,都是在为春天储能量~',
-        description_en: 'Friday, January 24, 2025, Snowy. Winter Hibernation: Burying Sweet Dreams Under Frozen Soil. It snowed again at the base today. The entire garden is like being covered with a white quilt. I pushed aside the snow and touched the tree trunk; the roots underneath are struggling to drill downwards. Under the frozen soil at minus 15℃, these "sleeping warriors" are turning the cold into nutrients. Every stretch of a root is storing energy for spring~',
-        time: '2025-6-11',
-        link: '/news/detail/8' // 跳转链接
+      imageUrl: './sources/imgs/companyNews/cherry.png',
+      title_zh: '四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记',
+      title_en: 'Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi',
+      description_zh: '2025 年1月 24 日 星期五 雪,冬日垫伏:在冻土下埋下甜蜜的梦 今天基地又落雪了,整片园子像盖了白棉被,拨开雪层摸了摸树干,底下的根系正憋着劲往下钻 -- 零下 15℃的冻土下,这些「沉睡的勇士,正把寒冷化作养分,每一道根须的伸展,都是在为春天储能量~',
+      description_en: 'Friday, January 24, 2025, Snowy. Winter Hibernation: Burying Sweet Dreams Under Frozen Soil. It snowed again at the base today. The entire garden is like being covered with a white quilt. I pushed aside the snow and touched the tree trunk; the roots underneath are struggling to drill downwards. Under the frozen soil at minus 15℃, these "sleeping warriors" are turning the cold into nutrients. Every stretch of a root is storing energy for spring~',
+      time: '2025-6-11',
+      link: '/news/detail/8' // 跳转链接
     }
   ];
 
@@ -204,5 +207,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 渲染列表
   imageList.render(mockProducts);
+
+  // 滚动到顶部的工具函数
+  function scrollToTop() {
+    // 方案1：直接滚动（大部分浏览器支持）
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto' // 直接跳转，无动画（如需动画可改为 'smooth'）
+    });
+
+    // 兼容老旧浏览器
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  // 监听 hash 变化事件（路由切换触发）
+  window.addEventListener('hashchange', scrollToTop);
+
+  // 页面加载时初始化路由
+  window.addEventListener('load', scrollToTop);
+
+  // 处理浏览器前进后退事件
+  // window.addEventListener('popstate', (event) => {
+  //   if (event.state && event.state.page === 'news-detail') {
+  //     loadNewsDetail(event.state.id);
+  //   } else if (event.state && event.state.page === 'news') {
+  //     document.getElementById('company_news').classList.add('active');
+  //     document.getElementById('company_news').style.display = 'block';
+  //     document.getElementById('company_news_detail').classList.remove('active');
+  //     document.getElementById('company_news_detail').style.display = 'none';
+  //   }
+  // });
 });
 
