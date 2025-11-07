@@ -58,26 +58,28 @@ class FooterComponent {
       // 左侧标题数据
       titles: [
         {
-          name: '关于我们',
+          name_zh: '关于我们',
+          name_en: 'About Us',
           subtitles: [
-            { text: '公司介绍', url: '#', clickable: true },
-            { text: '企业大事记', url: '#', clickable: true },
-            { text: '企业文化', url: '#', clickable: true },
-            { text: '工厂介绍', url: '#', clickable: true },
-            { text: '可持续发展', url: '#', clickable: true }
+            { text_zh: '公司介绍', text_en: 'Company Introduction', url: '#', clickable: true },
+            { text_zh: '企业大事记', text_en: 'Corporate Chronology of Events', url: '#', clickable: true },
+            { text_zh: '企业文化', text_en: 'Corporate culture', url: '#', clickable: true },
+            { text_zh: '工厂介绍', text_en: 'Factory Introduction', url: '#', clickable: true },
           ]
         },
         {
-          name: '新闻公告',
+          name_zh: '新闻公告',
+          name_en: 'News Announcement',
           subtitles: [
-            { text: '公司新闻', url: '#', clickable: true },
-            { text: '媒体资源库', url: '#', clickable: true }
+            { text_zh: '公司新闻', text_en: 'Company News', url: '#', clickable: true },
+            { text_zh: '媒体资源库', text_en: 'Media Resource Library', url: '#', clickable: true }
           ]
         },
         {
-          name: '联系我们',
+          name_zh: '联系我们',
+          name_en: 'Contact us',
           subtitles: [
-            { text: '400-818-0032', url: 'tel:4008180032', clickable: false }
+            { text_zh: '400-818-0032', text_en: '400-818-0032', url: 'tel:4008180032', clickable: false }
           ]
         }
       ],
@@ -92,7 +94,8 @@ class FooterComponent {
         },
         { 
           type: 'text',
-          text: '小红书',
+          text_zh: '',
+          text_en: '',
           qrcode: '',
           url: '#'
         }
@@ -102,12 +105,14 @@ class FooterComponent {
       records: [
         { 
           image: null, // 可以不传图片
-          text: '京ICP备17027549号-4',
+          text_zh: '京ICP备17027549号-4',
+          text_en: '京ICP备17027549号-4',
           url: 'https://beian.miit.gov.cn/#/Integrated/index' 
         },
         { 
           image: 'https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b883a071545849c8af20d7f836427517.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025105948DCEBDF0044F5D3C249C4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761965989&x-signature=4OaHPqoFDk2%2B003dEKhhC3kK3R8%3D',
-          text: '京公网安备11010502052391号',
+          text_zh: '京公网安备11010502052391号',
+          text_en: '京公网安备11010502052391号',
           url: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502052391' 
         }
       ]
@@ -185,14 +190,23 @@ class FooterComponent {
     this.options.titles.forEach(title => {
       html += `
         <div class="footer-title-group">
-          <h3 class="footer-main-title">${title.name}</h3>
+          <h3 class="footer-main-title">
+            <span class="en hidden">${title.name_en}</span>
+            <span class="zh">${title.name_zh}</span>
+          </h3>
           <div class="title-divider"></div>
           <div class="footer-subtitles">
             ${title.subtitles.map(sub => {
               if (sub.clickable) {
-                return `<a href="${sub.url}" class="footer-subtitle">${sub.text}</a>`;
+                return `<a href="${sub.url}" class="footer-subtitle">
+                    <span class="en hidden">${sub.text_en}</span>
+                    <span class="zh">${sub.text_zh}</span>
+                </a>`;
               } else {
-                return `<span class="footer-subtitle">${sub.text}</span>`;
+                return `<span class="footer-subtitle">
+                    <span class="en hidden">${sub.text_en}</span>
+                    <span class="zh">${sub.text_zh}</span>
+                </span>`;
               }
             }).join('')}
           </div>
@@ -214,8 +228,11 @@ class FooterComponent {
       // 社交媒体可以是图标或文字
       if (social.type === 'icon' && social.icon) {
         socialContent = `<img src="${social.icon}" alt="social icon" class="social-icon">`;
-      } else if (social.type === 'text' && social.text) {
-        socialContent = `<span class="social-text">${social.text}</span>`;
+      } else if (social.type === 'text' && (social.text_zh || social.text_en)) {
+        socialContent = `<p class="social-text">
+          <span class="en hidden">${social.text_en}</span>
+          <span class="zh">${social.text_zh}</span>
+        </p>`;
       }
       
       html += `
@@ -226,7 +243,7 @@ class FooterComponent {
           <!-- 二维码气泡 (方向向下展示) -->
           <div class="qrcode-bubble">
             <div class="bubble-arrow"></div>
-            <img src="${social.qrcode}" alt="${social.text || 'QR Code'}" class="qrcode-img">
+            <img src="${social.qrcode}" alt="" class="qrcode-img">
           </div>
         </div>
       `;
@@ -254,8 +271,11 @@ class FooterComponent {
       }
       
       // 文字
-      if (record.text) {
-        html += `<a class="record-text" href="${record.url}">${record.text}</a>`;
+      if (record.text_zh || record.text_en) {
+        html += `<a class="record-text" href="${record.url}">
+        <span class="en hidden">${record.text_en}</span>
+        <span class="zh">${record.text_zh}</span>
+        </a>`;
       }
       
       html += `</div>`;

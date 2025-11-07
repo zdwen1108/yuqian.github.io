@@ -1,5 +1,6 @@
-// 首页轮播组件
-new MediaCarousel({
+document.addEventListener('DOMContentLoaded', function () {
+  // 首页轮播组件
+  new MediaCarousel({
     containerId: 'carouselContainer',
     width: '100vw',
     autoPlay: true,
@@ -40,16 +41,17 @@ new MediaCarousel({
       }
     }
   });
-  
 
   // 初始化图片文字组件
   new imageTextComponent({
     containerId: 'revolutionaryEvent1',
-    imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
-    imageAlt: '煜谦集团携手合作伙伴',
-    title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
-    subtitle: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
-    detailUrl: '/revolutionary-event-detail.html',
+    imageUrl: './sources/imgs/companyNews/PrizeKing.png',
+    imageAlt: 'PrizeKing合作共赢，开启中智企业合作新模式！',
+    title_zh: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
+    title_en: 'PrizeKing cooperates for mutual benefit, initiating a new model of China-Chile enterprise cooperation!',
+    subtitle_zh: '10 月 24 日，智利周首天，我们和现场观众一起见证了 “Prizeking 云南蓝莓上市启动仪式”。',
+    subtitle_en: 'On October 24th, the first day of Chile Week, we witnessed the "Prizeking Yunnan Blueberry Launch Ceremony" together with the on-site audience.',
+    detailUrl: '/news',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -73,11 +75,13 @@ new MediaCarousel({
 
   new imageTextComponent({
     containerId: 'revolutionaryEvent2',
-    imageUrl: './sources/imgs/zhunong.png',
-    imageAlt: '助力乡村振兴',
-    title: '特色产业 助力乡村振兴',
-    subtitle: '引进煜谦,打造精品水果产业园。',
-    detailUrl: '/revolutionary-event-detail.html',
+    imageUrl: './sources/imgs/companyNews/SweetEarth.png',
+    imageAlt: '',
+    title_zh: '甜蜜地球™上市发布会在安徽滁州成功举办',
+    title_en: 'The Sweet Earth™ Launch Conference was successfully held in Chuzhou, Anhui Province.',
+    subtitle_zh: '9 月 9 日，一场超燃的 “甜蜜地球™” 上市发布会暨国际经销商大会在“醉美滁州”火热开启！',
+    subtitle_en: `On September 9th, an exciting "Sweet Earth™" launch conference and international distributors' conference kicked off in "Charming Chuzhou"!`,
+    detailUrl: '/news',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -101,11 +105,13 @@ new MediaCarousel({
 
   new imageTextComponent({
     containerId: 'revolutionaryEvent3',
-    imageUrl: './sources/imgs/zhunong.png',
-    imageAlt: '助力乡村振兴',
-    title: '特色产业 助力乡村振兴',
-    subtitle: '引进煜谦,打造精品水果产业园。',
-    detailUrl: '/revolutionary-event-detail.html',
+    imageUrl: './sources/imgs/companyNews/OZBLU.png',
+    imageAlt: '',
+    title_zh: '三曜共聚·鲜启蓝莓新势力',
+    title_en: 'Three Suns Converge · Freshly Launching the New Force of Blueberries',
+    subtitle_zh: '2025 年 8 月 30 日，全球高端蓝莓品牌 OZBLU 携手永辉超市与煜谦集团，于龙湖・上海奉贤天街隆重举办 “三曜共聚・鲜启蓝莓新势力” 蓝莓开季盛典。',
+    subtitle_en: 'On August 30, 2025, the global high-end blueberry brand OZBLU, together with Yonghui Supermarket and Yuqian Group, grandly held the "Three Brightness Gathered · Freshly Launching the New Force of Blueberries" blueberry season-opening ceremony at Longfor · Shanghai Fengxian Tianjie.',
+    detailUrl: '/news',
     // 可自定义尺寸
     dimensions: {
       width: '74%',
@@ -128,7 +134,7 @@ new MediaCarousel({
   });
 
 
-  // 初始化新闻资讯列表
+  // 初始化主页新闻资讯列表
   const newsCards = new InfoCardList('newsCardContainer', {
     cardWidth: '32%',
     imageHeight: '17vw',
@@ -141,36 +147,36 @@ new MediaCarousel({
   // 模拟接口返回数据（实际项目替换为真实接口）
   const apiData = [
     {
-      imageUrl: 'https://mediabluk.cnr.cn/img/cnr/CNRCDP/2022/1119/1a122fe04d8b2166884175996436803310.png?auth=61d54b0c56370ac68e7e1b5cf6d75dee',
-      title: '首批空运包机车厘子抵郑 京东生鲜携手煜谦集团全链路保障新鲜上市',
-      content: '11月16日，京东生鲜、七鲜超市、1号会员店联合以水果贸易为主营业务的国际贸易公司煜谦集团从产地包机空运的智利车厘子到达郑州。本次到货的智利车厘子共近万件，主要包含SANTINA和ROYALDAWN两大品种，为消费者提供更丰富的冬日新鲜水果选择。',
-      time: '2025-10-25',
-      link: '/news/detail/123' // 跳转链接
+        imageUrl: './sources/imgs/companyNews/lanbaoshi.jpg',
+        title_zh: 'IFG六品种合法化项目申请已正式截止',
+        title_en: 'The application for the IFG six-variety legalization project has officially closed.',
+        description_zh: 'IFG 六品种 (以商标 SWEET SAPPHIRE™、甜蜜蓝宝石™销售) 合法化计划的申请窗口现已关闭。BLOOM FRESH 感谢所有在此期间提出合法化申请的种植者，以及我们的合作伙伴百果种业、好果云和煜谦农业，为支持合法、安全、高品质和繁荣的中国鲜食葡萄行业所做的不懈努力。我们将随后发布关于我们努力保护和支持该品种、品牌的进一步信息。',
+        description_en: 'The application window for the legalization plan of the six IFG varieties (sold under the trademarks SWEET SAPPHIRE™ and 甜蜜蓝宝石™) is now closed. BLOOM FRESH would like to thank all growers who submitted legalization applications during this period, as well as our partners Baiguo Seed Industry, Haoguo Cloud, and Yuqian Agriculture, for their unremitting efforts in supporting a legal, safe, high-quality, and prosperous Chinese fresh table grape industry. We will subsequently release further information on our efforts to protect and support these varieties and brands.',
+        time: '2025-11-4',
+        link: '/news/detail/2' 
     },
     {
-      imageUrl: 'https://mmbiz.qpic.cn/sz_mmbiz_jpg/AA0OOA6ibPCnqJ6xuecI0ld3svLWealYUAcaUy9VtkxpU2PEqWxAdIiatFjZL5vvh3PGnKL10oFA9NcBsOXqn1Rg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0',
-      title: '煜谦葡提负责人谈葡萄新品种权，水果行业如何以品种破局？',
-      content: '8月底上海举办的2025中国国际水果展上，煜谦集团现场展示了其近年引入国内种植的专有葡萄品种秋脆（AUTUMNCRISP®）和甜蜜地球（Sweet Globe）品牌葡萄等，吸引了大量从业者关注。2024年，煜谦成为国内首家加入太阳世界Sun World俱乐部模式的经销合作伙伴，以及BLOOM FRESH公司的中国一级授权商。这两家行业领军企业的旗舰品种正是通过上述品牌进行市场推广。 ',
-      time: '2025-10-24',
-      link: '/news/detail/124' // 跳转链接
+        imageUrl: './sources/imgs/companyNews/avocado_port.png',
+        title_zh: '新季2025-2026年度第一柜智利牛油果靠港',
+        title_en: 'The first container of Chilean avocados for the new 2025-2026 season has arrived at the port.',
+        description_zh: '9 月 8 日，煜谦集团 2025-2026 产季第一柜智利牛油果靠上海港。这也是新产季到达中国市场的第一柜智利牛油果。作为中国主要的牛油果进口商和分销商，目前，煜谦集团在全国十二个城市设有档口及分仓，并在北京，上海，广州等主要城市拥有自建的牛油果催熟库。形成了批发，零售，餐饮，电商等多渠道体系齐头并进的全国牛油果产业布局。',
+        description_en: "On September 8th, Yuqian Group's first container of Chilean avocados for the 2025-2026 season arrived at Shanghai Port. This is also the first container of Chilean avocados to reach the Chinese market in the new season. As a major avocado importer and distributor in China, Yuqian Group currently has stalls and warehouses in twelve cities across the country, and owns self-built avocado ripening facilities in major cities such as Beijing, Shanghai, and Guangzhou. It has formed a nationwide avocado industry layout with multiple channels including wholesale, retail, catering, and e-commerce advancing in parallel.",
+        time: '2025-9-9',
+        link: '/news/detail/4' // 跳转链接
     },
     {
-      imageUrl: 'https://www.fruitexpo.cn/ueditor/php/upload/image/20240507/1715050718175006.jpg',
-      title: '煜谦集团携手合作伙伴，共拓榴莲产业新视野',
-      content: '4月22日，京东超市、KAF集团、煜谦集团在泰国尖竹汶府，中泰榴莲产业园举行了战略合作签约仪式。',
-      time: '2025-10-24',
-      link: '/news/detail/125' // 跳转链接
+        imageUrl: './sources/imgs/companyNews/cherry.png',
+        title_zh: '四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记',
+        title_en: 'Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi',
+        description_zh: '2025 年1月 24 日 星期五 雪,冬日垫伏:在冻土下埋下甜蜜的梦 今天基地又落雪了,整片园子像盖了白棉被,拨开雪层摸了摸树干,底下的根系正憋着劲往下钻 -- 零下 15℃的冻土下,这些「沉睡的勇士,正把寒冷化作养分,每一道根须的伸展,都是在为春天储能量~',
+        description_en: 'Friday, January 24, 2025, Snowy. Winter Hibernation: Burying Sweet Dreams Under Frozen Soil. It snowed again at the base today. The entire garden is like being covered with a white quilt. I pushed aside the snow and touched the tree trunk; the roots underneath are struggling to drill downwards. Under the frozen soil at minus 15℃, these "sleeping warriors" are turning the cold into nutrients. Every stretch of a root is storing energy for spring~',
+        time: '2025-6-11',
+        link: '/news/detail/8' // 跳转链接
     }
-    // 可根据接口返回自动增加更多卡片
   ];
 
   // 渲染新闻资讯列表（数量由apiData长度决定）
   newsCards.renderFromApi(apiData);
-
-  //跳转公司新闻页面
-  function toCompanyNews(){
-    window.location.href = '#';
-  }
 
   // 初始化产品列表
   const imageList = new ProductImageList({
@@ -180,21 +186,23 @@ new MediaCarousel({
     rowGap: 10,              // 垂直间距px
     showEllipsis: true,
     imagePadding: 40,         // 图片内边距5px
-    imageAspectRatio: 4/3,   // 宽高比3:4（竖图）
+    imageAspectRatio: 4 / 3,   // 宽高比3:4（竖图）
     imageFit: 'cover'
   });
 
   // 模拟产品数据
   const mockProducts = [
-    {id: '', imageUrl: './sources/products/chelizi.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/grape.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/lanmei.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/pineapple.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/apple.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/citrusfruit.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/durian.png', detailUrl: ''},
-    {id: '', imageUrl: './sources/products/stonefruits.png', detailUrl: ''}
+    { id: '', imageUrl: './sources/products/chelizi.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/grape.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/lanmei.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/pineapple.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/apple.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/citrusfruit.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/durian.png', detailUrl: '' },
+    { id: '', imageUrl: './sources/products/stonefruits.png', detailUrl: '' }
   ]
 
   // 渲染列表
   imageList.render(mockProducts);
+});
+

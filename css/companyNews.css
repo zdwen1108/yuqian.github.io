@@ -1,0 +1,183 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #ffffff;
+}
+
+.page-container {
+    max-width: 1780px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* 卡片容器样式 */
+.company-news-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    /* 卡片间距 */
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* 加载更多容器 */
+.company-news-load-more-container {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.load-more-btn {
+    padding: 10px 24px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.load-more-btn:hover {
+    border-color: #999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.load-more-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    border-color: #e0e0e0;
+}
+
+.company-news-no-more-text {
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+    display: none;
+    /* 默认隐藏 */
+}
+
+/* 卡片样式 */
+.interactive-card {
+    width: calc(33.333% - 20px);
+    /* 每行3个卡片 */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid #f0f0f0;
+    text-decoration: none;
+    /* 清除a标签下划线 */
+}
+
+/* 卡片图片区域 */
+.card-image-wrapper {
+    width: 100%;
+}
+
+.card-image {
+    width: 100%;
+    height: 260px;
+    /* 固定图片高度 */
+    object-fit: cover;
+    display: block;
+}
+
+/* 卡片内容区域 */
+.card-content {
+    box-sizing: border-box;
+    padding: 0 20px 20px;
+}
+
+/* 卡片标题 */
+.card-title {
+    font-size: 21px;
+    color: #333;
+    line-height: 26px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+/* 卡片详情内容 */
+.card-description {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #595959;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 卡片时间 */
+.card-time {
+    margin: 0;
+    font-size: 12px;
+    color: #999;
+    display: block;
+}
+
+/* 悬停效果 */
+.interactive-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* 响应式适配（关键：不同屏幕每行卡片数变化时，加载行数同步适配） */
+@media (max-width: 1200px) {
+    .interactive-card {
+        width: calc(50% - 8px);
+        /* 中等屏幕每行2个卡片 */
+    }
+}
+
+@media (max-width: 768px) {
+    .interactive-card {
+        width: 100%;
+        /* 小屏幕每行1个卡片 */
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-description {
+        font-size: 15px;
+    }
+}
+
+/* 无数据提示样式 */
+.empty-tip {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+    color: #999;
+    font-size: 16px;
+}

@@ -17,7 +17,7 @@
       theme: {
         extend: {
           colors: {
-            primary: '#2E7D32', // 深绿色（更专业）
+            primary: '#2E7D32', // 深绿色
             secondary: '#A5D6A7',
             neutral: '#F5F5F5',
           },
@@ -112,8 +112,11 @@
       .timeline-dot{
         background-color: #5ccf71;
       }
-    </style>
+  </style>
+  <!-- 加入我们页样式 -->
   <link href="./css/join.css" rel="stylesheet">
+  <!-- 公司新闻页样式 -->
+  <link rel="stylesheet" href="./css/companyNews.css">
 </head>
 
 <body>
@@ -122,7 +125,7 @@
   <!-- 页面内容 -->
   <div class="content_container">
     <!-- 主页 -->
-    <div class="page-content " id="home-page" data-route="/">
+    <div class="page-content active" id="home-page" data-route="/">
       <!-- 轮播容器 -->
       <div id="carouselContainer"></div>
       <div class="text_image_container" style="padding: 65px 80px;">
@@ -132,10 +135,16 @@
         <div id="revolutionaryEvent3" class="text_image_item"></div>
       </div>
       <div class="infoCardList">
-        <h1 class="news_title">新闻资讯</h1>
-        <!-- 信息卡片 -->
+        <h1 class="news_title">
+          <span class="en hidden">News and Information</span>
+          <span class="zh">新闻资讯</span>
+        </h1>
+        <!-- 新闻信息卡片 -->
         <div id="newsCardContainer"></div>
-        <button class="button" onclick="toCompanyNews()">查看更多</button>
+        <button class="button" onclick="toCompanyNews()">
+          <span class="en hidden">View more</span>
+          <span class="zh">查看更多</span>
+        </button>
       </div>
       <!-- 产品图片列表 -->
       <div id="product-container" style="padding: 65px 100px"></div>
@@ -143,12 +152,15 @@
       <!-- 合作商 -->
       <!-- <div id="partnerCarousel"></div> -->
       <div class="partner" style="display: flex;flex-direction: column;align-items: center;">
-        <h1 style="font-size: 28px;font-weight: 600;color: #4b4d45;">合作商</h1>
+        <h1 style="font-size: 28px;font-weight: 600;color: #4b4d45;">
+          <span class="en hidden">Cooperation</span>
+          <span class="zh">合作商</span>
+        </h1>
         <img style="width: 100%;" src="./sources/imgs/hezuoshang.png" alt="" srcset="">
       </div>
     </div>
     <!-- 公司介绍 -->
-    <div class="page-content active" id="company_introduce" data-route="/about/company">
+    <div class="page-content " id="company_introduce" data-route="/about/company">
       <!-- 轮播容器 -->
       <div id="introduceComponent"></div>
       <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
@@ -389,9 +401,30 @@
       <p>这是服务介绍内容...</p>
     </div>
     <!-- 新闻公告 -->
-    <div class="page-content" id="company_news" data-route="/news">
-      <h1>公司新闻</h1>
-      <p>这是服务介绍内容...</p>
+    <div class="page-content " id="company_news" data-route="/news">
+      <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
+        <h1 class="section-title" id="pageTitle">
+          <span class="en hidden">Company News</span>
+          <span class="zh">公司新闻</span>
+        </h1>
+        <!-- 公司新闻列表容器 -->
+        <div class="company-news-card-container" id="companyNewsContainer"></div>
+
+        <!-- 加载更多/无数据容器 -->
+        <div class="company-news-load-more-container">
+          <button class="load-more-btn" id="companyNewsloadMoreBtn">查看更多</button>
+          <p class="company-news-no-more-text" id="companyNewsnoMoreText">没有更多数据了</p>
+        </div>
+      </div>
+    </div>
+    <!-- 新闻详情页 -->
+    <div class="page-content " id="company_news_detail" data-route="/news">
+      <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
+        <h1 class="section-title" id="pageTitle">
+          <span class="en hidden">Company News</span>
+          <span class="zh">公司新闻详情</span>
+        </h1>
+      </div>
     </div>
     <!-- 媒体资源库 -->
     <div class="page-content" id="media_sources" data-route="/media">
@@ -470,7 +503,8 @@
               <span class="zh">仓储管培生</span>
             </h3>
             <p>
-              <span class="en hidden">Majors are not limited; supply chain and other related majors are preferred.</span>
+              <span class="en hidden">Majors are not limited; supply chain and other related majors are
+                preferred.</span>
               <span class="zh">专业不限，供应链等相关专业优先</span>
             </p>
           </div>
@@ -500,7 +534,8 @@
               <span class="zh">基础福利</span>
             </h3>
             <p>
-              <span class="en hidden">Employee canteen, five social insurance and one housing fund, team-building activities</span>
+              <span class="en hidden">Employee canteen, five social insurance and one housing fund, team-building
+                activities</span>
               <span class="zh">员工食堂、五险一金、团建拓展</span>
             </p>
           </div>
@@ -553,14 +588,20 @@
       <!-- 企业介绍与管培生培养流程 -->
       <section class="company">
         <h2>
-          
+
           <span class="en hidden">Talents Shine, We're Waiting for You</span>
           <span class="zh">煜才闪耀 职等你来</span>
         </h2>
         <p>
-          
-          <span class="en hidden">Yuqian, starting its journey from Shanghai's Shiliupu in 2003, has developed into a fruit agricultural technology enterprise rooted in China and connected to the world. By building an efficient, transparent, and sustainable global fruit supply chain network, it covers the entire industrial ecological chain "from a seed to the consumer's dining table". Together with global partners, it jointly leads the fruit industry towards a high-quality and sustainable future, and continues to innovate for a better life for humanity.</span>
-          <span class="zh">煜谦自2003年，从上海十六铺启航，已发展成为一家扎根中国、链接全球的水果农业科技企业。通过构建高效、透明、可持续的全球水果供应链网络，覆盖“从一颗种子到消费者餐桌”的完整产业生态链。与全球合作伙伴，共同引领水果产业向高品质、可持续的未来迈进，为人类美好生活而持续创新。</span>
+
+          <span class="en hidden">Yuqian, starting its journey from Shanghai's Shiliupu in 2003, has developed into a
+            fruit agricultural technology enterprise rooted in China and connected to the world. By building an
+            efficient, transparent, and sustainable global fruit supply chain network, it covers the entire industrial
+            ecological chain "from a seed to the consumer's dining table". Together with global partners, it jointly
+            leads the fruit industry towards a high-quality and sustainable future, and continues to innovate for a
+            better life for humanity.</span>
+          <span
+            class="zh">煜谦自2003年，从上海十六铺启航，已发展成为一家扎根中国、链接全球的水果农业科技企业。通过构建高效、透明、可持续的全球水果供应链网络，覆盖“从一颗种子到消费者餐桌”的完整产业生态链。与全球合作伙伴，共同引领水果产业向高品质、可持续的未来迈进，为人类美好生活而持续创新。</span>
         </p>
         <h3>
           <span class="en hidden">Management Trainee Training Process</span>
@@ -573,7 +614,8 @@
               <span class="zh">入职培训环节</span>
             </h4>
             <p>
-              <span class="en hidden">Integrate into the corporate environment, master job competencies, establish a foundation for collaboration, and clarify the development direction</span>
+              <span class="en hidden">Integrate into the corporate environment, master job competencies, establish a
+                foundation for collaboration, and clarify the development direction</span>
               <span class="zh">融入企业环境、掌握岗位能力、建立协作基础、明确发展方向</span>
             </p>
           </div>
@@ -583,7 +625,9 @@
               <span class="zh">专项培训环节</span>
             </h4>
             <p>
-              <span class="en hidden">Professional knowledge of quality, quality inspection and market conditions, operation of fruit wholesale markets, KA customer development skills, training for KA international procurement, and key points of fruit quality control</span>
+              <span class="en hidden">Professional knowledge of quality, quality inspection and market conditions,
+                operation of fruit wholesale markets, KA customer development skills, training for KA international
+                procurement, and key points of fruit quality control</span>
               <span class="zh">品质专业知识、质检和行情、水果批发市场经营、KA客户开发技巧、KA国际采购培养、水果品控问题点</span>
             </p>
           </div>
@@ -593,7 +637,8 @@
               <span class="zh">定向历练环节</span>
             </h4>
             <p>
-              <span class="en hidden">Professional knowledge, leadership, communication skills, learning ability, work attitude, problem-solving and adaptability</span>
+              <span class="en hidden">Professional knowledge, leadership, communication skills, learning ability, work
+                attitude, problem-solving and adaptability</span>
               <span class="zh">专业知识、领导力、沟通能力、学习能力、工作态度、问题解决与应变</span>
             </p>
           </div>
@@ -603,7 +648,8 @@
               <span class="zh">评估环节</span>
             </h4>
             <p>
-              <span class="en hidden">Two-way evaluation scoring, supervising teachers, peer evaluation among trainees</span>
+              <span class="en hidden">Two-way evaluation scoring, supervising teachers, peer evaluation among
+                trainees</span>
               <span class="zh">双向评估评分、带教老师、学员互评</span>
             </p>
           </div>
@@ -623,7 +669,8 @@
           <img src="./sources/imgs/actives/active4.jpg" alt="企业活动照片4">
         </div>
         <p>
-          <span class="en hidden">Values: Hard work, innovation and progress, integrity and professionalism, co-creation and sharing</span>
+          <span class="en hidden">Values: Hard work, innovation and progress, integrity and professionalism, co-creation
+            and sharing</span>
           <span class="zh">价值观：艰苦奋斗、创新进取、诚信专业、共创共享</span>
         </p>
         <p>
@@ -631,7 +678,8 @@
           <span class="zh">使命：为消费者传递美好，为种植者持续赋能</span>
         </p>
         <p>
-          <span class="en hidden">Vision: Lead the global fruit supply chain and become a fruit agricultural technology enterprise that innovates for a better life</span>
+          <span class="en hidden">Vision: Lead the global fruit supply chain and become a fruit agricultural technology
+            enterprise that innovates for a better life</span>
           <span class="zh">愿景：领跑全球水果供应链，成为为美好生活而创新的水果农业科技企业</span>
         </p>
       </section>
@@ -715,10 +763,8 @@
       </section>
     </div>
   </div>
-
   <!-- 页脚 -->
   <div id="footer-container" style="min-width: 1280px;"></div>
-
 </body>
 
 </html>
@@ -738,6 +784,8 @@
 <script src="./js/index.js"></script>
 <!-- 公司介绍 -->
 <script src="./js/companyIntroduce.js"></script>
+<!-- 公司新闻页 -->
+<script src="./js/companyNews.js"></script>
 <!-- 加入我们 -->
 <script src="./js/join.js"></script>
 <script>
@@ -849,7 +897,7 @@
       // 可以在这里处理页面其他内容的语言切换
       const enElements = document.querySelectorAll('.en');
       const zhElements = document.querySelectorAll('.zh');
-
+      localStorage.setItem('language', lang)
       zhElements.forEach(el => {
         el.classList.toggle('hidden');
       });
@@ -857,8 +905,6 @@
       enElements.forEach(el => {
         el.classList.toggle('hidden');
       });
-
-
     }
   });
 
@@ -892,26 +938,28 @@
 
     titles: [
       {
-        name: '关于我们',
+        name_zh: '关于我们',
+        name_en: 'About Us',
         subtitles: [
-          { text: '公司介绍', url: '#', clickable: true },
-          { text: '企业大事记', url: '#', clickable: true },
-          { text: '企业文化', url: '#', clickable: true },
-          { text: '工厂介绍', url: '#', clickable: true },
-          { text: '可持续发展', url: '#', clickable: true }
+          { text_zh: '公司介绍', text_en: 'Company Introduction', url: '/about/company', clickable: true },
+          { text_zh: '企业大事记', text_en: 'Corporate Chronology of Events', url: '/about/events', clickable: true },
+          { text_zh: '企业文化', text_en: 'Corporate culture', url: '#', clickable: true },
+          { text_zh: '工厂介绍', text_en: 'Factory Introduction', url: '#', clickable: true },
         ]
       },
       {
-        name: '新闻公告',
+        name_zh: '新闻公告',
+        name_en: 'News Announcement',
         subtitles: [
-          { text: '公司新闻', url: '#', clickable: true },
-          { text: '媒体资源库', url: '#', clickable: true }
+          { text_zh: '公司新闻', text_en: 'Company News', url: '/news', clickable: true },
+          { text_zh: '媒体资源库', text_en: 'Media Resource Library', url: '/media', clickable: true }
         ]
       },
       {
-        name: '联系我们',
+        name_zh: '联系我们',
+        name_en: 'Contact us',
         subtitles: [
-          { text: '400-818-0032', url: 'tel:4008180032', clickable: false }
+          { text_zh: '400-818-0032', text_en: '400-818-0032', url: 'tel:4008180032', clickable: false }
         ]
       }
     ],
@@ -926,6 +974,15 @@
         text: '京公网安备11010502052391号'
       }
     ]
+  });
+
+  //跳转公司新闻页面
+  function toCompanyNews() {
+    window.location.href = '/news';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    localStorage.removeItem('language')
   });
 
 </script>

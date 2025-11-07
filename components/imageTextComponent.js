@@ -79,7 +79,7 @@ class imageTextComponent{
   // 渲染组件
   render() {
     const { 
-      imageUrl, imageAlt, title, subtitle, detailUrl, 
+      imageUrl, imageAlt, title_zh, title_en, subtitle_zh, subtitle_en, detailUrl, 
       dimensions, styles 
     } = this.config;
 
@@ -126,20 +126,25 @@ class imageTextComponent{
         background-color: #ffffff;
         display: flex;
         flex-direction: column;
-        position: relative;
       ">
         <h2 class="event-title" style="
           margin: 0 0 43px 0;
           font-size: ${styles.title.fontSize};
           color: ${styles.title.color};
           font-weight: ${styles.title.fontWeight};
-        ">${title}</h2>
+        ">
+        <span class="en hidden">${title_en}</span>
+        <span class="zh">${title_zh}</span>
+        </h2>
         
         <p class="event-subtitle" style="
           font-size: ${styles.subtitle.fontSize};
           color: ${styles.subtitle.color};
           line-height: 32px;
-        ">${subtitle}</p>
+        ">
+        <span class="en hidden">${subtitle_en}</span>
+        <span class="zh">${subtitle_zh}</span>
+        </p>
         
         <a href="${detailUrl}" class="detail-button" style="
           width: ${styles.button.width};
@@ -154,9 +159,7 @@ class imageTextComponent{
           text-decoration: none;
           box-sizing: border-box;
           transition: all 0.3s ease;
-          position: absolute;
-          left: 50px;
-          bottom: 25%;
+          margin-top: 20px;
         ">了解详情</a>
       </div>
     `;
