@@ -1,6 +1,6 @@
-// 公司介绍页顶部图片
+// 公司大事记页面顶部背景图片
 new MediaCarousel({
-    containerId: 'introduceComponent',
+    containerId: 'companyEvents',
     width: '100vw',
     autoPlay: false,
     interval: 4000,
@@ -10,7 +10,7 @@ new MediaCarousel({
         {
             type: 'image',
             url: './sources/imgs/yuqian04.png',
-            alt: '水果'
+            alt: ''
         },
     ],
     // 基础配置（小屏幕默认）

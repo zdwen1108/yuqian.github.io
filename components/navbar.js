@@ -78,7 +78,7 @@ class Navbar {
         <div class="navbar-content">
           <!-- Logo -->
           <div class="navbar-logo" style="font-size: ${this.config.logo.fontSize}">
-            <a href="#" class="navbar-logo-link" style="text-decoration: none;">
+            <a href="#" class="navbar-logo-link" style="text-decoration: none; display: flex;align-items: center;">
               ${this.config.logo.image ? 
               `<img src="${this.config.logo.image}" 
                     alt="${this.currentLang === 'zh' ? this.config.logo.text.zh : this.config.logo.text.en}"

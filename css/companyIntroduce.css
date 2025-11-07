@@ -1,7 +1,6 @@
 /* 主内容区样式 */
         .main-content {
             display: flex;
-            
         }
         
         /* 公司信息样式 */
@@ -27,7 +26,8 @@
         /* 统计数据样式 */
         .statistics {
             display: flex;
-            margin-top: 83px;
+            position: absolute;
+            bottom: 0;
             padding-top: 20px;
             border-top: 1px solid #eee;
         }

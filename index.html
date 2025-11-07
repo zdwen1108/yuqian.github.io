@@ -125,7 +125,7 @@
   <!-- 页面内容 -->
   <div class="content_container">
     <!-- 主页 -->
-    <div class="page-content active" id="home-page" data-route="/">
+    <div class="page-content " id="home-page" data-route="/">
       <!-- 轮播容器 -->
       <div id="carouselContainer"></div>
       <div class="text_image_container" style="padding: 65px 80px;">
@@ -161,7 +161,7 @@
     </div>
     <!-- 公司介绍 -->
     <div class="page-content " id="company_introduce" data-route="/about/company">
-      <!-- 轮播容器 -->
+      <!-- 公司介绍页面顶部北京图片 -->
       <div id="introduceComponent"></div>
       <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
         <!-- 页面标题 -->
@@ -224,18 +224,20 @@
 
           <!-- 右侧图片 -->
           <div class="image-container" style="width: 55%;">
-            <img src="./sources/imgs/yuqian02.png" alt="" class="company-image" id="companyImage">
+            <img src="./sources/imgs/company.png" alt="" class="company-image" id="companyImage">
           </div>
         </div>
       </div>
     </div>
     <!-- 企业大事记 -->
     <div class="page-content " id="company_events" data-route="/about/events">
+      <!-- 顶部背景图 -->
+      <div id="companyEvents"></div>
       <!-- 标题 -->
-      <div class="text-center mb-16">
+      <div class="text-center mb-16" style="margin-top: 10px;">
         <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-800 mb-4">
-          <span class="en hidden">Corporate Chronicles of Events</span>
-          <span class="zh">企业大事记</span>
+          <span class="en hidden">Yuqian's Chronicles of Events</span>
+          <span class="zh">煜谦大事记</span>
         </h2>
         <div class="w-16 h-1 bg-primary mx-auto"></div>
         <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
@@ -401,7 +403,9 @@
       <p>这是服务介绍内容...</p>
     </div>
     <!-- 新闻公告 -->
-    <div class="page-content " id="company_news" data-route="/news">
+    <div class="page-content active" id="company_news" data-route="/news">
+      <!-- 顶部背景图 -->
+      <div id="companyNewsTopImage"></div>
       <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
         <h1 class="section-title" id="pageTitle">
           <span class="en hidden">Company News</span>
@@ -782,8 +786,10 @@
 <script src="./components/footer.js"></script>
 <!-- 首页 -->
 <script src="./js/index.js"></script>
-<!-- 公司介绍 -->
+<!-- 公司介绍页 -->
 <script src="./js/companyIntroduce.js"></script>
+<!-- 公司大事记页 -->
+<script src="./js/compayEvents.js"></script>
 <!-- 公司新闻页 -->
 <script src="./js/companyNews.js"></script>
 <!-- 加入我们 -->
@@ -811,9 +817,9 @@
       },
       fontSize: '1.8rem',
       // 图片相关配置
-      // image: 'path/to/logo.png',
-      // imageWidth: '120px',
-      // imageHeight: '50px'
+      image: './sources/imgs/icon.png',
+      imageWidth: '35px',
+      imageHeight: '35px'
     },
     defaultLang: 'zh',
     itemFontSize: '18px',       // 菜单项字体大小
@@ -842,7 +848,7 @@
           {
             key: 'company',
             zh: '煜谦大事记',
-            en: "Yüqian's Chronology of Events",
+            en: "Yuqian's Chronology of Events",
             route: '/about/events'
           }
         ]

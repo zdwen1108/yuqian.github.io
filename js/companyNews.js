@@ -1,4 +1,35 @@
-// 1. 模拟接口返回的数组数据（实际项目中替换为真实接口请求结果）
+// 公司介绍页顶部图片
+new MediaCarousel({
+    containerId: 'companyNewsTopImage',
+    width: '100vw',
+    autoPlay: false,
+    interval: 4000,
+    showIndicators: false,
+    showControls: false,
+    items: [
+        {
+            type: 'image',
+            url: './sources/imgs/yuqian04.png',
+            alt: ''
+        },
+    ],
+    // 基础配置（小屏幕默认）
+    height: 'auto',
+    interval: 3000,
+    // 响应式断点配置
+    responsive: {
+        576: { // 平板及以上
+            height: '15vh',
+            interval: 4000,
+            showControls: true // 大屏幕显示控制按钮
+        },
+        1200: { // 桌面端
+            height: '30vh',
+            interval: 5000
+        }
+    }
+});
+// 1. 模拟接口返回的数组数据（实际替换为真实接口请求结果）
 const apiData = [
     {
         id: 1,

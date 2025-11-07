@@ -61,9 +61,9 @@ class FooterComponent {
           name_zh: '关于我们',
           name_en: 'About Us',
           subtitles: [
-            { text_zh: '公司介绍', text_en: 'Company Introduction', url: '#', clickable: true },
-            { text_zh: '企业大事记', text_en: 'Corporate Chronology of Events', url: '#', clickable: true },
-            { text_zh: '企业文化', text_en: 'Corporate culture', url: '#', clickable: true },
+            { text_zh: '公司介绍', text_en: 'Company Introduction', url: '', clickable: true },
+            { text_zh: '企业大事记', text_en: 'Corporate Chronology of Events', url: '', clickable: true },
+            { text_zh: '企业文化', text_en: 'Corporate culture', url: '', clickable: true },
             { text_zh: '工厂介绍', text_en: 'Factory Introduction', url: '#', clickable: true },
           ]
         },
@@ -110,7 +110,7 @@ class FooterComponent {
           url: 'https://beian.miit.gov.cn/#/Integrated/index' 
         },
         { 
-          image: 'https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b883a071545849c8af20d7f836427517.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025105948DCEBDF0044F5D3C249C4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761965989&x-signature=4OaHPqoFDk2%2B003dEKhhC3kK3R8%3D',
+          image: '',
           text_zh: '京公网安备11010502052391号',
           text_en: '京公网安备11010502052391号',
           url: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502052391' 
@@ -120,6 +120,7 @@ class FooterComponent {
 
     // 合并用户配置
     this.options = { ...this.defaults, ...options };
+    
     this.container = document.getElementById(containerId);
     
     if (!this.container) {
@@ -587,10 +588,3 @@ class FooterComponent {
     });
   }
 }
-
-// 自动初始化组件
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('footer-container')) {
-    new FooterComponent('footer-container');
-  }
-});
