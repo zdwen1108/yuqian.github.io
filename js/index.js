@@ -241,56 +241,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 页面加载时初始化路由
   window.addEventListener('load', scrollToTop);
-
-  // 处理浏览器前进后退事件
-  window.addEventListener('popstate', (event) => {
-    if (event.state) {
-      switch (event.state.page) {
-        case 'home-page':
-          pageChange('home-page');
-          break;
-        case 'company_introduce':
-          pageChange('ompany_introduce');
-          break;
-        case 'company_events':
-          pageChange('company_events');
-          break;
-        case 'company_cultures':
-          pageChange('company_cultures');
-          break;
-        case 'company_product':
-          pageChange('company_product');
-          break;
-        case 'company_news':
-          pageChange('company_news');
-          break;
-        case 'company_news_detail':
-          loadNewsDetail(event.state.id);
-          break;
-        case 'media_sources':
-          pageChange('media_sources');
-          break;
-        case 'join_work':
-          pageChange('join_work');
-          break;
-        default:
-          break;
-      }
-    }
-  });
-
-  // 页面切换
-  function pageChange(pageId) {
-    // 隐藏所有页面
-    document.querySelectorAll('.page-content').forEach(page => {
-      page.classList.remove('active');
-      page.style.display = 'none';
-    });
-
-    // 显示当前页面
-    const detailPage = document.getElementById(pageId);
-    detailPage.classList.add('active');
-    detailPage.style.display = 'block';
-  }
 });
 
