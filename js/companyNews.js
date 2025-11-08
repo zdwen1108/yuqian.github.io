@@ -286,7 +286,7 @@ function navigateToNewsDetail(newsId) {
     detailPage.style.display = 'block';
 
     // 更新URL，使用history API添加历史记录
-    history.pushState({ page: 'news-detail', id: newsId }, `新闻详情`, `/news/detail?id=${newsId}`);
+    history.pushState({ page: 'company_news_detail', id: newsId }, `新闻详情`, `/news/detail?id=${newsId}`);
 
     // 加载新闻详情内容
     loadNewsDetail(newsId);

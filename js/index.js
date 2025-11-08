@@ -214,14 +214,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // 滚动到顶部的工具函数
   function scrollToTop() {
     // 方案1：直接滚动（大部分浏览器支持）
-    window.scrollTo({
-      top: 0,
-      behavior: 'auto' // 直接跳转，无动画（如需动画可改为 'smooth'）
-    });
+    if (window.scrollTo && typeof window.scrollTo === 'function') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto' // 直接跳转，无动画（如需动画可改为 'smooth'）
+      });
+    }
 
-    // 兼容老旧浏览器
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // 兼容不支持 scrollTo 配置项的老旧浏览器（如IE11及以下）
+    // 针对不同文档模式的兼容（标准模式/怪异模式）
+    if (document.documentElement.scrollTop !== 0) {
+      document.documentElement.scrollTop = 0;
+    }
+    if (document.body.scrollTop !== 0) {
+      document.body.scrollTop = 0;
+    }
+
+    // 兼容 Safari 某些版本的特殊情况
+    if (window.pageYOffset !== 0) {
+      window.pageYOffset = 0;
+    }
   }
 
   // 监听 hash 变化事件（路由切换触发）
@@ -231,15 +243,54 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('load', scrollToTop);
 
   // 处理浏览器前进后退事件
-  // window.addEventListener('popstate', (event) => {
-  //   if (event.state && event.state.page === 'news-detail') {
-  //     loadNewsDetail(event.state.id);
-  //   } else if (event.state && event.state.page === 'news') {
-  //     document.getElementById('company_news').classList.add('active');
-  //     document.getElementById('company_news').style.display = 'block';
-  //     document.getElementById('company_news_detail').classList.remove('active');
-  //     document.getElementById('company_news_detail').style.display = 'none';
-  //   }
-  // });
+  window.addEventListener('popstate', (event) => {
+    if (event.state) {
+      switch (event.state.page) {
+        case 'home-page':
+          pageChange('home-page');
+          break;
+        case 'company_introduce':
+          pageChange('ompany_introduce');
+          break;
+        case 'company_events':
+          pageChange('company_events');
+          break;
+        case 'company_cultures':
+          pageChange('company_cultures');
+          break;
+        case 'company_product':
+          pageChange('company_product');
+          break;
+        case 'company_news':
+          pageChange('company_news');
+          break;
+        case 'company_news_detail':
+          loadNewsDetail(event.state.id);
+          break;
+        case 'media_sources':
+          pageChange('media_sources');
+          break;
+        case 'join_work':
+          pageChange('join_work');
+          break;
+        default:
+          break;
+      }
+    }
+  });
+
+  // 页面切换
+  function pageChange(pageId) {
+    // 隐藏所有页面
+    document.querySelectorAll('.page-content').forEach(page => {
+      page.classList.remove('active');
+      page.style.display = 'none';
+    });
+
+    // 显示当前页面
+    const detailPage = document.getElementById(pageId);
+    detailPage.classList.add('active');
+    detailPage.style.display = 'block';
+  }
 });
 
