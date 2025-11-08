@@ -19,11 +19,13 @@ class Navbar {
    * @param {string} options.menuItems[].en - 英文名称
    * @param {string} options.menuItems[].route - 路由地址
    * @param {boolean} [options.menuItems[].hasDropdown=false] - 是否有下拉菜单
+   * @param {boolean} [options.menuItems[].clickable=true] - 是否可点击跳转
    * @param {Array} [options.menuItems[].dropdown] - 下拉菜单项
    * @param {string} options.menuItems[].dropdown[].key - 下拉项唯一标识
    * @param {string} options.menuItems[].dropdown[].zh - 下拉项中文名称
    * @param {string} options.menuItems[].dropdown[].en - 下拉项英文名称
    * @param {string} options.menuItems[].dropdown[].route - 下拉项路由地址
+   * @param {boolean} [options.menuItems[].dropdown[].clickable=true] - 是否可点击跳转
    * @param {Function} [options.onRouteChange] - 路由变化回调
    * @param {Function} [options.onLangChange] - 语言变化回调
    */
@@ -48,6 +50,17 @@ class Navbar {
 
     // 合并配置
     this.config = { ...this.defaults, ...options };
+    // 为菜单项添加默认clickable属性
+    this.config.menuItems = this.config.menuItems.map(item => ({
+      clickable: true,
+      ...item,
+      // 为下拉项添加默认clickable属性
+      dropdown: item.dropdown ? item.dropdown.map(subItem => ({
+        clickable: true,
+        ...subItem
+      })) : []
+    }));
+    
     this.currentLang = this.config.defaultLang;
     this.container = document.getElementById(this.config.containerId);
 
@@ -61,66 +74,13 @@ class Navbar {
   }
 
   /**
-   * 初始化导航栏
-   */
-  init() {
-    this.render();
-    this.bindEvents();
-    this.setActiveItem();
-  }
-
-  /**
-   * 渲染导航栏
-   */
-  render() {
-    this.container.innerHTML = `
-      <div class="yuanqi-navbar">
-        <div class="navbar-content">
-          <!-- Logo -->
-          <div class="navbar-logo" style="font-size: ${this.config.logo.fontSize}">
-            <a href="#" class="navbar-logo-link" style="text-decoration: none; display: flex;align-items: center;">
-              ${this.config.logo.image ? 
-              `<img src="${this.config.logo.image}" 
-                    alt="${this.currentLang === 'zh' ? this.config.logo.text.zh : this.config.logo.text.en}"
-                    style="width: ${this.config.logo.imageWidth}; 
-                           height: ${this.config.logo.imageHeight}">` : ''
-              }
-              ${this.config.logo.text ? `<span>${this.currentLang === 'zh' ? this.config.logo.text.zh : this.config.logo.text.en}</span>` : ''}
-            </a>
-          </div>
-          
-          <!-- 导航菜单 -->
-          <ul class="navbar-menu">
-            ${this.renderMenuItems()}
-          </ul>
-          
-          <!-- 语言切换 -->
-          <div class="language-switch">
-            <button class="lang-btn ${this.currentLang === 'zh' ? 'active' : ''}" data-lang="zh">中</button>
-            <button class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" data-lang="en">En</button>
-          </div>
-          
-          <!-- 移动端菜单按钮 -->
-          <button class="menu-toggle" aria-label="菜单">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    `;
-
-    // 添加样式
-    this.injectStyles();
-  }
-
-  /**
    * 渲染菜单项
    */
   renderMenuItems() {
     return this.config.menuItems.map(item => `
       <li class="menu-item ${item.hasDropdown ? 'has-dropdown' : ''}">
-        <a href="${item.route || '#'}" class="menu-link" 
+        <a href="${item.clickable ? (item.route || '#') : '#'}" 
+           class="menu-link ${!item.clickable ? 'not-clickable' : ''}" 
            data-key="${item.key}"
            style="font-size: ${this.config.itemFontSize}">
           ${this.currentLang === 'zh' ? item.zh : item.en}
@@ -139,7 +99,8 @@ class Navbar {
       <ul class="dropdown-menu">
         ${items.map(item => `
           <li class="dropdown-item">
-            <a href="${item.route || '#'}" class="dropdown-link" 
+            <a href="${item.clickable ? (item.route || '#') : '#'}" 
+               class="dropdown-link ${!item.clickable ? 'not-clickable' : ''}" 
                data-key="${item.key}"
                style="font-size: ${this.config.dropdownFontSize}">
               ${this.currentLang === 'zh' ? item.zh : item.en}
@@ -151,7 +112,7 @@ class Navbar {
   }
 
   /**
-   * 注入样式
+   * 注入样式 - 增加不可点击样式
    */
   injectStyles() {
     // 避免重复注入样式
@@ -160,21 +121,22 @@ class Navbar {
     const style = document.createElement('style');
     style.id = 'yuanqi-navbar-styles';
     style.textContent = `
+      /* 原有样式保持不变 */
       .navbar-logo-link {
-        color: inherit; /* 继承父元素颜色 */
-        text-decoration: none; /* 去除下划线 */
+        color: inherit;
+        text-decoration: none;
       }
       .navbar-logo-link:hover {
-        color: inherit; /*  hover 时保持颜色不变 */
+        color: inherit;
       }
       .yuanqi-navbar {
         position: fixed; 
-        top: 0; /* 固定在顶部 */
+        top: 0;
         width: 100%;
         background-color: #fff;
         border-bottom: 1px solid #e5e7eb;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        z-index: 1000; /* 确保在其他内容上方 */
+        z-index: 1000;
       }
       
       .navbar-content {
@@ -315,6 +277,13 @@ class Navbar {
         transition: all 0.3s;
       }
       
+      /* 新增: 不可点击样式 */
+      .not-clickable {
+        cursor: default;
+        pointer-events: none;
+        opacity: 0.8;
+      }
+      
       /* 响应式设计 */
       @media (max-width: 768px) {
         .navbar-menu {
@@ -369,7 +338,7 @@ class Navbar {
   }
 
   /**
-   * 绑定事件
+   * 绑定事件 - 增加对不可点击项的处理
    */
   bindEvents() {
     // 移动端菜单切换
@@ -401,8 +370,8 @@ class Navbar {
       });
     });
 
-    // 菜单点击事件
-    const menuLinks = this.container.querySelectorAll('.menu-link, .dropdown-link');
+    // 菜单点击事件 - 只处理可点击项
+    const menuLinks = this.container.querySelectorAll('.menu-link:not(.not-clickable), .dropdown-link:not(.not-clickable)');
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const route = link.getAttribute('href');
@@ -427,9 +396,63 @@ class Navbar {
   }
 
   /**
-   * 设置当前激活项
-   * @param {string} [currentRoute] - 当前路由
+   * 新增: 外部更新选中状态的方法
+   * 用于通过非导航栏点击方式改变页面时更新导航选中状态
+   * @param {string} route - 路由地址
    */
+  updateActiveItem(route) {
+    this.setActiveItem(route);
+  }
+
+  // 其他原有方法保持不变...
+  init() {
+    this.render();
+    this.bindEvents();
+    this.setActiveItem();
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <div class="yuanqi-navbar">
+        <div class="navbar-content">
+          <!-- Logo -->
+          <div class="navbar-logo" style="font-size: ${this.config.logo.fontSize}">
+            <a href="#" class="navbar-logo-link" style="text-decoration: none; display: flex;align-items: center;">
+              ${this.config.logo.image ? 
+              `<img src="${this.config.logo.image}" 
+                    alt="${this.currentLang === 'zh' ? this.config.logo.text.zh : this.config.logo.text.en}"
+                    style="width: ${this.config.logo.imageWidth}; 
+                           height: ${this.config.logo.imageHeight}">` : ''
+              }
+              ${this.config.logo.text ? `<span>${this.currentLang === 'zh' ? this.config.logo.text.zh : this.config.logo.text.en}</span>` : ''}
+            </a>
+          </div>
+          
+          <!-- 导航菜单 -->
+          <ul class="navbar-menu">
+            ${this.renderMenuItems()}
+          </ul>
+          
+          <!-- 语言切换 -->
+          <div class="language-switch">
+            <button class="lang-btn ${this.currentLang === 'zh' ? 'active' : ''}" data-lang="zh">中</button>
+            <button class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" data-lang="en">En</button>
+          </div>
+          
+          <!-- 移动端菜单按钮 -->
+          <button class="menu-toggle" aria-label="菜单">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    // 添加样式
+    this.injectStyles();
+  }
+
   setActiveItem(currentRoute) {
     // 如果没有指定路由，使用当前页面URL
     const route = currentRoute || window.location.pathname;
@@ -443,7 +466,6 @@ class Navbar {
     document.querySelectorAll(`.menu-link[href="${route}"], .dropdown-link[href="${route}"]`)
       .forEach(link => {
         link.classList.add('active');
-        
         // 如果是下拉项，同时激活父菜单
         if (link.classList.contains('dropdown-link')) {
           const parentLink = link.closest('.has-dropdown').querySelector('.menu-link');
@@ -452,12 +474,17 @@ class Navbar {
       });
   }
 
-  /**
-   * 更新导航栏配置
-   * @param {Object} newConfig - 新的配置
-   */
   updateConfig(newConfig) {
     this.config = { ...this.config, ...newConfig };
+    // 确保更新后clickable属性仍然存在
+    this.config.menuItems = this.config.menuItems.map(item => ({
+      clickable: true,
+      ...item,
+      dropdown: item.dropdown ? item.dropdown.map(subItem => ({
+        clickable: true,
+        ...subItem
+      })) : []
+    }));
     this.render();
     this.bindEvents();
     this.setActiveItem();

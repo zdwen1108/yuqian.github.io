@@ -30,7 +30,6 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('首页初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
     }
   },
   '/about': {
@@ -38,7 +37,6 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('关于我们页面初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
     }
   },
   '/about/company': {
@@ -46,7 +44,6 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('公司介绍页面初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
     }
   },
   '/about/events': {
@@ -54,7 +51,7 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('公司大事记页面初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
+
     }
   },
   '/products': {
@@ -62,7 +59,6 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('产品页面初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
     }
   },
   '/news': {
@@ -70,15 +66,12 @@ const routeConfig = {
     activeClass: 'active',
     init: () => {
       console.log('新闻页面初始化');
-      // 可添加列表数据加载、事件绑定等逻辑
     }
   },
   '/news/detail': {
     container: 'company_news_detail',
     activeClass: 'active',
     init: (params) => {
-      console.log('新闻详情页面初始化，参数：', params);
-      // 调用原有的详情加载逻辑（需传入路由参数）
       if (params.id) loadNewsDetail(params.id);
     }
   },
@@ -164,17 +157,37 @@ function switchPage(targetPath, params = {}, replace = false) {
   }
 
   // 4. 更新URL（保持路由与页面同步）
+  // 处理参数为 null/undefined 的情况
+  if (!params || typeof params !== 'object' || Array.isArray(params)) {
+    return '';
+  }
   const queryStr = Object.entries(params)
-    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .filter(([_, value]) => {
+      // 过滤掉值为 null/undefined/空字符串的项（可选，根据需求调整）
+      return value !== null && value !== undefined && value !== '';
+    })
+    .map(([key, value]) => {
+      // 处理数组值（例如 { tags: [1,2] } 转为 tags=1&tags=2）
+      if (Array.isArray(value)) {
+        return value
+          .filter(item => item !== null && item !== undefined) // 过滤数组中空值
+          .map(item => `${key}=${encodeURIComponent(item)}`)
+          .join('&');
+      }
+      // 处理普通值（字符串/数字/布尔值）
+      return `${key}=${encodeURIComponent(String(value))}`;
+    })
     .join('&');
-  const newHash = `${targetPath}${queryStr.replace("id=", "") ? `?${queryStr}` : ''}`;
-  
+
+  const newHash = `${targetPath}${queryStr ? `?${queryStr}` : ''}`;
+
   if (replace) {
     window.history.replaceState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   } else {
     window.history.pushState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   }
-
+  
+  navbar.updateActiveItem(targetPath.includes("news/detail") ? '/news' : targetPath);
   // 5. 滚动到顶部
   scrollToTop({ behavior: 'smooth' });
 }
@@ -186,22 +199,29 @@ function switchPage(targetPath, params = {}, replace = false) {
 function initRouter() {
   // 解析当前路由并切换页面
   const { path, params } = parseHash();
-  switchPage(path, params, true); // replace=true：不新增历史记录，避免回退到空路由
+  switchPage(path, params, false); // replace=true：不新增历史记录，避免回退到空路由
 
   // 1. 监听hash变化（手动修改hash或点击锚点时触发）
   window.addEventListener('hashchange', () => {
     const { path, params } = parseHash();
-    switchPage(path, params, true);
+    switchPage(path, params, false);
+    navbar.updateActiveItem(path);
   });
 
   // 2. 监听浏览器前进/后退（popstate事件）
   window.addEventListener('popstate', (event) => {
-    // 从历史状态中获取页面标识，匹配路由
-    const page = event.state?.page;
-    const targetPath = page ? `/${page}` : DEFAULT_ROUTE;
-    const params = { id: event.state?.id }; // 传递详情页ID等参数
+    if (event.defaultPrevented) return;
+    event.preventDefault();
 
-    switchPage(targetPath, params, true);
+    // 安全提取历史状态（处理state为null的情况）
+    const historyState = event.state || {};
+    const page = historyState.page || '';
+    // 从历史状态中获取页面标识，匹配路由
+    const targetPath = page ? `/${page}` : DEFAULT_ROUTE;
+    const params = { id: historyState.id }; // 传递详情页ID等参数
+    
+    navbar.updateActiveItem(targetPath);
+    switchPage(targetPath, params, false);
   });
 }
 

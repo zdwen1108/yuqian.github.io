@@ -831,7 +831,7 @@
         key: 'home',
         zh: '首页',
         en: 'Home',
-        route: '/',
+        route: '/home',
         hasDropdown: false
       },
       {
@@ -839,6 +839,7 @@
         zh: '关于我们',
         en: 'About Us',
         route: '/about/company',
+        clickable: false,
         hasDropdown: true,
         dropdown: [
           {
@@ -867,6 +868,7 @@
         zh: '新闻公告',
         en: 'News',
         route: '/news',
+        clickable: false,
         hasDropdown: true,
         dropdown: [
           {
@@ -893,11 +895,7 @@
     ],
     // 路由变化回调
     onRouteChange: function (route) {
-      // 实际应用中可以在这里实现页面跳转逻辑
-      // 更新浏览器地址栏和历史记录
-      switchPage(route, params = {}, replace = true)
-      // 更新页面内容
-      updatePageContent(route);
+      switchPage(route, {}, replace = false)
     },
     // 语言变化回调
     onLangChange: function (lang) {
@@ -988,8 +986,7 @@
   function toCompanyNews() {
     const route = '/news';
     // 更新浏览器地址栏和历史记录
-    history.pushState({ route }, '', route);
-    updatePageContent(route);
+    switchPage(route, {}, replace = false)
   }
 
   document.addEventListener('DOMContentLoaded', function () {
