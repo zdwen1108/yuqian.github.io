@@ -270,9 +270,7 @@ function getCardsPerRow() {
 // 导航到新闻详情页
 function navigateToNewsDetail(newsId) {
     // 更新URL，使用history API添加历史记录
-    switchPage('/news/detail', {id: newsId}, replace = true)
-    // 加载新闻详情内容
-    loadNewsDetail(newsId);
+    switchPage('/news/detail', { id: newsId }, true)
 }
 
 // 加载新闻详情内容
@@ -290,6 +288,12 @@ function loadNewsDetail(newsId) {
 // 渲染新闻详情
 function renderNewsDetail(news) {
     const detailPage = document.getElementById('company_news_detail');
+    const allChildElements = [...detailPage.children];
+    allChildElements.forEach((child, index) => {
+        if (index !== 0) { // 非第一个子元素
+            detailPage.removeChild(child); // 删除子元素
+        }
+    });
     const newDetailContainer = document.createElement('div');
     newDetailContainer.className = 'new_detail_container'
     let newDetailHTML = `

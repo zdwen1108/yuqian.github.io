@@ -167,12 +167,12 @@ function switchPage(targetPath, params = {}, replace = false) {
   const queryStr = Object.entries(params)
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
-  const newHash = `${targetPath}${queryStr ? `?${queryStr}` : ''}`;
+  const newHash = `${targetPath}${queryStr.replace("id=", "") ? `?${queryStr}` : ''}`;
   
   if (replace) {
-    window.history.replaceState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`);
+    window.history.replaceState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   } else {
-    window.history.pushState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`);
+    window.history.pushState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   }
 
   // 5. 滚动到顶部

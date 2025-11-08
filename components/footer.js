@@ -199,10 +199,10 @@ class FooterComponent {
           <div class="footer-subtitles">
             ${title.subtitles.map(sub => {
               if (sub.clickable) {
-                return `<a href="${sub.url}" class="footer-subtitle">
+                return `<button class="footer-subtitle" id="footer_button" data-id="${sub.url}">
                     <span class="en hidden">${sub.text_en}</span>
                     <span class="zh">${sub.text_zh}</span>
-                </a>`;
+                </button>`;
               } else {
                 return `<span class="footer-subtitle">
                     <span class="en hidden">${sub.text_en}</span>
@@ -216,6 +216,14 @@ class FooterComponent {
     });
     
     leftContainer.innerHTML = html;
+
+    // 给标签添加跳转事件
+    leftContainer.querySelectorAll("#footer_button").forEach(item => {
+      const dataId = item.getAttribute("data-id");
+      item.addEventListener("click", ()=>{
+        switchPage(dataId, { id: '' }, true)
+      })
+    })
   }
   
   // 渲染右侧社交媒体区域
