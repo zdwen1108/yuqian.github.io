@@ -274,19 +274,8 @@ function getCardsPerRow() {
 
 // 导航到新闻详情页
 function navigateToNewsDetail(newsId) {
-    // 隐藏所有页面
-    document.querySelectorAll('.page-content').forEach(page => {
-        page.classList.remove('active');
-        page.style.display = 'none';
-    });
-
-    // 显示新闻详情页
-    const detailPage = document.getElementById('company_news_detail');
-    detailPage.classList.add('active');
-    detailPage.style.display = 'block';
-
     // 更新URL，使用history API添加历史记录
-    switchPage('company_news_detail', {id: newsId}, replace = true)
+    switchPage('/news/detail', {id: newsId}, replace = true)
     // 加载新闻详情内容
     loadNewsDetail(newsId);
 }
