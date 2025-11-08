@@ -895,7 +895,7 @@
     onRouteChange: function (route) {
       // 实际应用中可以在这里实现页面跳转逻辑
       // 更新浏览器地址栏和历史记录
-      history.pushState({ route }, '', route);
+      switchPage(route, params = {}, replace = true)
       // 更新页面内容
       updatePageContent(route);
     },

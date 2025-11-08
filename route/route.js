@@ -168,7 +168,7 @@ function switchPage(targetPath, params = {}, replace = false) {
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
   const newHash = `${targetPath}${queryStr ? `?${queryStr}` : ''}`;
-
+  
   if (replace) {
     window.history.replaceState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`);
   } else {
