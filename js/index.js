@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 模拟接口返回数据（实际项目替换为真实接口）
   const apiData = [
     {
+      detailId: '1',
       imageUrl: './sources/imgs/companyNews/lanbaoshi.jpg',
       title_zh: 'IFG六品种合法化项目申请已正式截止',
       title_en: 'The application for the IFG six-variety legalization project has officially closed.',
@@ -159,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
       link: '/news/detail/2'
     },
     {
+      detailId: '4',
       imageUrl: './sources/imgs/companyNews/avocado_port.png',
       title_zh: '新季2025-2026年度第一柜智利牛油果靠港',
       title_en: 'The first container of Chilean avocados for the new 2025-2026 season has arrived at the port.',
@@ -168,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
       link: '/news/detail/4' // 跳转链接
     },
     {
+      detailId: '8',
       imageUrl: './sources/imgs/companyNews/cherry.png',
       title_zh: '四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记',
       title_en: 'Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi',

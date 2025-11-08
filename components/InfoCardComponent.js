@@ -255,7 +255,9 @@ class InteractiveCard {
   }
 
   handleClick() {
-    if (this.data.link) window.open(this.data.link, '_blank');
+    if (this.data.detailId) {
+      navigateToNewsDetail(this.data.detailId)
+    }
   }
 
   handleMouseEnter() {
