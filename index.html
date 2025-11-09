@@ -119,6 +119,10 @@
   <link rel="stylesheet" href="./css/companyNews.css">
   <!-- 新闻详情页 -->
   <link rel="stylesheet" href="./css/new_detail.css">
+  <!-- 公司产品页面样式 -->
+   <link rel="stylesheet" href="./css/companyProducts.css">
+   <!-- 产品详情页 -->
+  <link rel="stylesheet" href="./css/product_detail.css">
 </head>
 
 <body>
@@ -153,13 +157,14 @@
 
       <!-- 合作商 -->
       <!-- <div id="partnerCarousel"></div> -->
-      <div class="partner" style="display: flex;flex-direction: column;align-items: center;">
+      <!-- <div class="partner" style="display: flex;flex-direction: column;align-items: center;">
         <h1 style="font-size: 28px;font-weight: 600;color: #4b4d45;">
           <span class="en hidden">Cooperation</span>
           <span class="zh">合作商</span>
         </h1>
         <img style="width: 100%;" src="./sources/imgs/hezuoshang.png" alt="" srcset="">
-      </div>
+      </div> -->
+      <div id="partnersContainer" style="padding: 65px 100px"></div>
     </div>
     <!-- 公司介绍 -->
     <div class="page-content " id="company_introduce" data-route="/about/company">
@@ -401,8 +406,27 @@
     </div>
     <!-- 旗下产品 -->
     <div class="page-content" id="company_product" data-route="/products">
-      <h1>旗下产品</h1>
-      <p>这是服务介绍内容...</p>
+      <!-- 顶部背景图 -->
+      <div id="companyProductsTopImage"></div>
+      <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
+        <h1 class="section-title" id="pageTitle">
+          <span class="en hidden">Products under its umbrella</span>
+          <span class="zh">旗下产品</span>
+        </h1>
+        <!-- 公司产品列表容器 -->
+        <div class="company-products-card-container" id="companyProductsContainer"></div>
+
+        <!-- 加载更多/无数据容器 -->
+        <div class="company-products-load-more-container">
+          <button class="load-more-btn" id="companyProductsloadMoreBtn">查看更多</button>
+          <p class="company-products-no-more-text" id="companyProductsnoMoreText">没有更多数据了</p>
+        </div>
+      </div>
+    </div>
+    <!-- 产品详情页 -->
+    <div class="page-content " id="company_products_detail" data-route="/products/detail">
+      <!-- 顶部背景图 -->
+      <div id="productsDetailTopImage"></div>
     </div>
     <!-- 新闻公告 -->
     <div class="page-content " id="company_news" data-route="/news">
@@ -784,6 +808,8 @@
 <script src="./components/footer.js"></script>
 <!-- 首页 -->
 <script src="./js/index.js"></script>
+<!-- 合作商 -->
+<script src="./components/partners.js"></script>
 <!-- 公司介绍页 -->
 <script src="./js/companyIntroduce.js"></script>
 <!-- 公司大事记页 -->
@@ -791,11 +817,15 @@
 <!-- 公司新闻页 -->
 <script src="./js/companyNews.js"></script>
 <!-- 新闻详情页 -->
- <script src="./js/newDetail.js"></script>
+<script src="./js/newDetail.js"></script>
+<!-- 公司产品页 -->
+<script src="./js/companyProducts.js"></script>
+<!-- 产品详情页 -->
+<script src="./js/productDetail.js"></script>
 <!-- 加入我们 -->
 <script src="./js/join.js"></script>
 <!-- 加载路由 -->
- <script src="./route/route.js"></script>
+<script src="./route/route.js"></script>
 <script>
 
   // 1. 定义页面路由与内容的映射关系
@@ -988,6 +1018,58 @@
     // 更新浏览器地址栏和历史记录
     switchPage(route, {}, replace = false)
   }
+
+  const partners = new OverseasPartners('partnersContainer', {
+    title: '国外合作商',
+    titleEn: 'overseas partners',
+    partners: [
+                {imageUrl: './sources/imgs/partners/partners01.png',text: 'Agrokasa'},
+                {imageUrl: './sources/imgs/partners/partners02.png',text: 'AGROVISION'},
+                {imageUrl: './sources/imgs/partners/partners03.png',text: 'Dole'},
+                {imageUrl: './sources/imgs/partners/partners04.png',text: 'S&W'},
+                {imageUrl: './sources/imgs/partners/partners05.png',text: 'NORTH BAY'},
+                {imageUrl: './sources/imgs/partners/partners06.png',text: 'DDC'},
+                {imageUrl: './sources/imgs/partners/partners07.png',text: 'GOLDEN BAY FRUIT'},
+                {imageUrl: './sources/imgs/partners/partners08.png',text: 'Jardines Ananas'},
+                {imageUrl: './sources/imgs/partners/partners09.png',text: 'beta'},
+                {imageUrl: './sources/imgs/partners/partners10.png',text: 'Draper'},
+                {imageUrl: './sources/imgs/partners/partners11.png',text: 'NORTFRUIT'},
+                {imageUrl: './sources/imgs/partners/partners12.png',text: 'unifrutti'},
+                {imageUrl: './sources/imgs/partners/partners13.png',text: 'greentree'},
+                {imageUrl: './sources/imgs/partners/partners14.png',text: 'GLOBAL FRUIT'},
+                {imageUrl: './sources/imgs/partners/partners15.png',text: 'BOLLO'},
+                {imageUrl: './sources/imgs/partners/partners16.png',text: 'zestfruit'},
+                {imageUrl: './sources/imgs/partners/partners17.png',text: 'HASS PERU'},
+                {imageUrl: './sources/imgs/partners/partners18.png',text: 'Prize'},
+                {imageUrl: './sources/imgs/partners/partners19.png',text: 'SUNNY'},
+                {imageUrl: './sources/imgs/partners/partners20.png',text: 'SUNRISE'},
+                {imageUrl: './sources/imgs/partners/partners21.png',text: 'motilla'},
+                {imageUrl: './sources/imgs/partners/partners22.png',text: 'NORTHERN'},
+                {imageUrl: './sources/imgs/partners/partners23.png',text: 'Mr.APPLE'},
+                {imageUrl: './sources/imgs/partners/partners24.png',text: 'Vanguard'},
+                {imageUrl: './sources/imgs/partners/partners25.png',text: 'ozblu'},
+                {imageUrl: './sources/imgs/partners/partners26.png',text: 'sunfruits'},
+                {imageUrl: './sources/imgs/partners/partners27.png',text: 'C&L'},
+                {imageUrl: './sources/imgs/partners/partners28.png',text: 'magna'},
+                {imageUrl: './sources/imgs/partners/partners29.png',text: 'Geofruit'},
+                {imageUrl: './sources/imgs/partners/partners30.png',text: 'superfresh growers'},
+                {imageUrl: './sources/imgs/partners/partners31.png',text: 'GEE WHIZ'},
+                {imageUrl: './sources/imgs/partners/partners32.png',text: 'Geofruit'},
+                {imageUrl: './sources/imgs/partners/partners33.png',text: 'redland'},
+                {imageUrl: './sources/imgs/partners/partners34.png',text: 'Rana'},
+                {imageUrl: './sources/imgs/partners/partners35.png',text: 'verfrut'},
+                {imageUrl: './sources/imgs/partners/partners36.png',text: 'SUN'},
+                {imageUrl: './sources/imgs/partners/partners37.png',text: 'Río King'},
+                {imageUrl: './sources/imgs/partners/partners38.png',text: 'delipack'},
+                {imageUrl: './sources/imgs/partners/partners39.png',text: 'RIVERMAID'},
+                {imageUrl: './sources/imgs/partners/partners40.png',text: 'INTER TERRA'},
+                {imageUrl: './sources/imgs/partners/partners41.png',text: 'CERASUS'},
+                {imageUrl: './sources/imgs/partners/partners42.png',text: 'G&GES FRUIT'},
+                {imageUrl: './sources/imgs/partners/partners43.png',text: 'KALLOS'},
+                {imageUrl: './sources/imgs/partners/partners44.png',text: 'CHIRUCHI'},
+                {imageUrl: './sources/imgs/partners/partners45.png',text: 'Dynasty'}
+            ],
+  });
 
   document.addEventListener('DOMContentLoaded', function () {
     localStorage.removeItem('language')

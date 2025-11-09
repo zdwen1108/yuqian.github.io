@@ -75,6 +75,13 @@ const routeConfig = {
       if (params.id) loadNewsDetail(params.id);
     }
   },
+  '/products/detail': {
+    container: 'company_products_detail',
+    activeClass: 'active',
+    init: (params) => {
+      if (params.id) loadProductsDetail(params.id);
+    }
+  },
   '/media': {
     container: 'media_sources',
     activeClass: 'active',
@@ -186,8 +193,13 @@ function switchPage(targetPath, params = {}, replace = false) {
   } else {
     window.history.pushState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   }
-  
-  navbar.updateActiveItem(targetPath.includes("news/detail") ? '/news' : targetPath);
+  if(targetPath.includes("news/detail")){
+    navbar.updateActiveItem('/news');
+  }else if(targetPath.includes("products/detail")){
+    navbar.updateActiveItem('/products');
+  }else{
+    navbar.updateActiveItem(targetPath);
+  }
   // 5. 滚动到顶部
   scrollToTop({ behavior: 'smooth' });
 }

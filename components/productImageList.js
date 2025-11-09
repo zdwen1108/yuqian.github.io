@@ -22,7 +22,7 @@ class ProductImageList {
       spacing: 16,            // 水平间距
       rowGap: 16,             // 垂直间距
       showEllipsis: true,
-      onImageClick: null,
+      onImageClick: null,     // 点击事件回调
       listWidth: '100%',
       imagePadding: 8,
       imageAspectRatio: 1,    // 1:1比例
@@ -159,30 +159,27 @@ class ProductImageList {
       const imgWrapper = document.createElement('div');
       imgWrapper.className = 'product-image-wrapper';
 
-      // 创建链接
-      const link = document.createElement('a');
-      link.href = product.detailUrl || '#';
-      link.title = product.altText || `查看${product.id}详情`;
-
-      // 创建图片
+      // 创建图片（移除了a标签，直接使用img）
       const img = document.createElement('img');
       img.src = product.imageUrl;
       img.alt = product.altText || `产品${product.id}`;
       img.loading = 'lazy';
 
       // 组装元素
-      link.appendChild(img);
-      imgWrapper.appendChild(link);
+      imgWrapper.appendChild(img);
       listItem.appendChild(imgWrapper);
       list.appendChild(listItem);
 
-      // 绑定点击事件
-      if (this.config.onImageClick) {
-        listItem.addEventListener('click', (e) => {
-          e.preventDefault();
+      // 绑定点击事件（关键修改：在渲染时绑定点击事件）
+      listItem.addEventListener('click', () => {
+        // 如果配置了点击回调，则执行回调
+        if (typeof this.config.onImageClick === 'function') {
           this.config.onImageClick(product);
-        });
-      }
+        } else {
+          // 未配置回调时的默认行为，可以根据需要修改
+          console.log('点击了产品:', product);
+        }
+      });
     });
 
     // 如果需要显示省略号（表示还有更多产品）

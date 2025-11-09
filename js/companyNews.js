@@ -31,7 +31,7 @@ new MediaCarousel({
 });
 
 // 1. 模拟接口返回的数组数据（实际替换为真实接口请求结果）
-const apiData = [
+const newsApiData = [
     {
         "id": 1,
         "imageUrl": "./sources/imgs/companyNews/PrizeKing.png",
@@ -70,7 +70,7 @@ const apiData = [
             },
             {
                 "type": "image",
-                "imageUrl": "./sources/imgs/newsDetail/pk03.png",
+                "imageUrl": "./sources/products/tblueberry.png",
             },
             {
                 "type": "p",
@@ -241,7 +241,7 @@ const apiData = [
     },
     {
         "id": 8,
-        "imageUrl": "./sources/imgs/companyNews/cherry.png",
+        "imageUrl": "./sources/products/cherry.png",
         "title_zh": "四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记",
         "title_en": "Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi",
         "description_zh": "2025 年1月 24 日 星期五 雪,冬日垫伏:在冻土下埋下甜蜜的梦 今天基地又落雪了,整片园子像盖了白棉被,拨开雪层摸了摸树干,底下的根系正憋着劲往下钻 -- 零下 15℃的冻土下,这些「沉睡的勇士,正把寒冷化作养分,每一道根须的伸展,都是在为春天储能量~",
@@ -256,7 +256,7 @@ let pageConfig = {
     currentPage: 1, // 当前页码
     rowsPerPage: 2, // 每页显示"行数"（不是卡片数）
     cardsPerRow: 3, // 每行卡片数（默认3个，响应式时会动态调整）
-    totalData: apiData.length // 总数据量
+    totalData: newsApiData.length // 总数据量
 };
 
 // 3. 计算每行卡片数（适配响应式）
@@ -270,13 +270,13 @@ function getCardsPerRow() {
 // 导航到新闻详情页
 function navigateToNewsDetail(newsId) {
     // 更新URL，使用history API添加历史记录
-    switchPage('/news/detail', { id: newsId }, true)
+    switchPage('/news/detail', { id: newsId }, false)
 }
 
 // 加载新闻详情内容
 function loadNewsDetail(newsId) {
     let newDetail;
-    apiData.forEach(item => {
+    newsApiData.forEach(item => {
         if (item.id == newsId)
             newDetail = item;
     });
@@ -347,11 +347,11 @@ function renderNewsDetail(news) {
 
     newDetailContainer.innerHTML = newDetailHTML;
     detailPage.appendChild(newDetailContainer);
-    scrollToTop();
+    newScrollToTop();
 }
 
 // 滚动到顶部的工具函数
-function scrollToTop() {
+function newScrollToTop() {
     // 方案1：直接滚动（大部分浏览器支持）
     window.scrollTo({
         top: 0,
@@ -376,7 +376,7 @@ function goBackToNewsList() {
 }
 
 // 4. 渲染卡片（根据当前页码和行数计算要显示的卡片）
-function renderCards() {
+function newRenderCards() {
     const companyNewsContainer = document.getElementById("companyNewsContainer");
     const companyNewsloadMoreBtn = document.getElementById("companyNewsloadMoreBtn");
     const companyNewsnoMoreText = document.getElementById("companyNewsnoMoreText");
@@ -390,7 +390,7 @@ function renderCards() {
         pageConfig.currentPage * pageConfig.rowsPerPage * pageConfig.cardsPerRow,
         pageConfig.totalData
     );
-    const currentData = apiData.slice(startIndex, endIndex);
+    const currentData = newsApiData.slice(startIndex, endIndex);
 
     // 情况1：数组为空时显示无数据提示
     if (pageConfig.totalData === 0) {
@@ -399,7 +399,7 @@ function renderCards() {
         companyNewsnoMoreText.style.display = "none";
         return;
     }
-
+    
     const lang = localStorage.getItem('language');
     // 情况2：渲染当前页卡片（追加模式，不是替换）
     currentData.forEach(item => {
@@ -437,7 +437,7 @@ function renderCards() {
 // 5. 查看更多按钮事件（加载下两行）
 document.getElementById("companyNewsloadMoreBtn").addEventListener("click", () => {
     pageConfig.currentPage++; // 页码+1（对应加载下两行）
-    renderCards(); // 追加渲染下两行卡片
+    newRenderCards(); // 追加渲染下两行卡片
 });
 
 // 6. 窗口大小变化时重新计算每行卡片数，并重绘（响应式适配）
@@ -453,11 +453,11 @@ window.addEventListener("resize", () => {
         pageConfig.currentPage = Math.ceil(displayedCount / (pageConfig.rowsPerPage * pageConfig.cardsPerRow)) || 1;
         // 清空容器重新渲染
         document.getElementById("companyNewsContainer").innerHTML = "";
-        renderCards();
+        newRenderCards();
     }
 });
 
 // 7. 页面加载完成后渲染初始两行数据
-window.onload = function () {
-    renderCards();
-};
+window.addEventListener('load', function() {
+    newRenderCards();
+});

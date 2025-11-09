@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     {
       detailId: '8',
-      imageUrl: './sources/imgs/companyNews/cherry.png',
+      imageUrl: './sources/products/cherry.png',
       title_zh: '四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记',
       title_en: 'Tempered by the Four Seasons · Finally Blossoming into Sweetness | Growth Diary of Cherries at the Tongchuan Base in Shaanxi',
       description_zh: '2025 年1月 24 日 星期五 雪,冬日垫伏:在冻土下埋下甜蜜的梦 今天基地又落雪了,整片园子像盖了白棉被,拨开雪层摸了摸树干,底下的根系正憋着劲往下钻 -- 零下 15℃的冻土下,这些「沉睡的勇士,正把寒冷化作养分,每一道根须的伸展,都是在为春天储能量~',
@@ -193,19 +193,22 @@ document.addEventListener('DOMContentLoaded', function () {
     showEllipsis: true,
     imagePadding: 40,         // 图片内边距5px
     imageAspectRatio: 4 / 3,   // 宽高比3:4（竖图）
-    imageFit: 'cover'
+    imageFit: 'cover',
+    onImageClick: (product) => {
+    // 跳转到产品详情页
+    navigateToProductsDetail(product.id)
+  }
   });
 
   // 模拟产品数据
   const mockProducts = [
-    { id: '', imageUrl: './sources/products/chelizi.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/grape.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/lanmei.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/pineapple.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/apple.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/citrusfruit.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/durian.png', detailUrl: '' },
-    { id: '', imageUrl: './sources/products/stonefruits.png', detailUrl: '' }
+    { id: '1', imageUrl: './sources/products/cherry.png', detailUrl: '' },
+    { id: '3', imageUrl: './sources/products/grape.png', detailUrl: '' },
+    { id: '2', imageUrl: './sources/products/tblueberry.png', detailUrl: '' },
+    { id: '4', imageUrl: './sources/products/pineapple.png', detailUrl: '' },
+    { id: '7', imageUrl: './sources/products/citrusfruit.png', detailUrl: '' },
+    { id: '5', imageUrl: './sources/products/Icepersimmon.png', detailUrl: '' },
+    { id: '6', imageUrl: './sources/products/avocado.png', detailUrl: '' }
   ]
 
   // 渲染列表
