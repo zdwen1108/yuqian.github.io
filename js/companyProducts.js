@@ -515,7 +515,9 @@ function productRenderCards() {
     // 情况3：判断是否还有更多数据，控制按钮和文本显示
     const hasMore = endIndex < producPageConfig.totalData;
     companyProductsloadMoreBtn.style.display = hasMore ? "inline-block" : "none";
-    companyProductsnoMoreText.style.display = hasMore ? "none" : "block";
+    // companyProductsnoMoreText.style.display = hasMore ? "none" : "block";
+    // 隐藏没有更多数据了文字
+    companyProductsnoMoreText.style.display = "none";
 }
 
 // 5. 查看更多按钮事件（加载下两行）

@@ -431,7 +431,9 @@ function newRenderCards() {
     // 情况3：判断是否还有更多数据，控制按钮和文本显示
     const hasMore = endIndex < pageConfig.totalData;
     companyNewsloadMoreBtn.style.display = hasMore ? "inline-block" : "none";
-    companyNewsnoMoreText.style.display = hasMore ? "none" : "block";
+    // companyNewsnoMoreText.style.display = hasMore ? "none" : "block";
+    // 隐藏没有更多数据了文字
+    companyNewsnoMoreText.style.display = "none";
 }
 
 // 5. 查看更多按钮事件（加载下两行）
