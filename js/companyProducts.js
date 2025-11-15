@@ -30,11 +30,13 @@ new MediaCarousel({
     }
 });
 
+const ipPath = "http://180.76.192.210";
+
 // 1. 模拟接口返回的数组数据（实际替换为真实接口请求结果）
 const productList = [
     {
         "id": 1,
-        "imageUrl": "./sources/products/cherry.png",
+        "imageUrl": ipPath + "/sources/products/cherry.png",
         "title_zh": "车厘子",
         "title_en": "cherry",
         "contentTitle_zh": "四季淬炼·终成甜蜜|陕西铜川基地车厘子成长日记",
@@ -113,7 +115,7 @@ const productList = [
     },
     {
         "id": 2,
-        "imageUrl": "./sources/products/tblueberry.png",
+        "imageUrl": ipPath + "/sources/products/tblueberry.png",
         "title_zh": "蓝莓",
         "title_en": "Tblueberry",
         "contentTitle_zh": "【营养密码：为什么蓝莓被称为 “超级水果”？】",
@@ -239,7 +241,7 @@ const productList = [
     },
     {
         "id": 3,
-        "imageUrl": "./sources/products/grape.png",
+        "imageUrl": ipPath + "/sources/products/grape.png",
         "title_zh": "葡萄",
         "title_en": "grape",
         "description_zh": "煜谦已正式获得Sun World与Bloomfresh两家专利提子品种公司的授权，成为其在中国本土的一级经销商和授权种植户，并依托国产与进口专利品种，构建覆盖全年的葡萄供应链体系。",
@@ -249,7 +251,7 @@ const productList = [
     },
     {
         "id": 4,
-        "imageUrl": "./sources/products/pineapple.png",
+        "imageUrl": ipPath + "/sources/products/pineapple.png",
         "title_zh": "凤梨",
         "title_en": "pineapple",
         "description_zh": "与菲律宾最大凤梨出口商S&W联合推出的蓝孔雀S&W凤梨，产品包括了有冠凤梨、无冠凤梨、蜂蜜凤梨。产品持续供应商超、茶饮品牌等渠道。产自棉兰老岛北部高地行省，火山灰土质与热带气候造就其香甜可口全年品质稳定。",
@@ -259,7 +261,7 @@ const productList = [
     },
     {
         "id": 5,
-        "imageUrl": "./sources/products/Icepersimmon.png",
+        "imageUrl": ipPath + "/sources/products/Icepersimmon.png",
         "title_zh": "冰柿",
         "title_en": "Ice persimmon",
         "contentTitle_zh": "煜谦出品|传柿富平冰柿",
@@ -303,7 +305,7 @@ const productList = [
     },
     {
         "id": 6,
-        "imageUrl": "./sources/products/avocado.png",
+        "imageUrl": ipPath + "/sources/products/avocado.png",
         "title_zh": "牛油果",
         "title_en": "avocado",
         "description_zh": "全球超20余家供应商提供全年稳定供应，全国多个催熟仓库及档口，具有统配统销的实力。",
@@ -313,7 +315,7 @@ const productList = [
     },
     {
         "id": 7,
-        "imageUrl": "./sources/products/citrusfruit.png",
+        "imageUrl": ipPath + "/sources/products/citrusfruit.png",
         "title_zh": "柑橘",
         "title_en": "citrus",
         "description_zh": "深耕全球产区优质资源，保证高品质柑橘全年供应。",
@@ -323,7 +325,7 @@ const productList = [
     },
     {
         "id": 8,
-        "imageUrl": "./sources/products/durian.png",
+        "imageUrl": ipPath + "/sources/products/durian.png",
         "title_zh": "榴莲",
         "title_en": "durian",
         "description_zh": "稳定的物流供应链保障下，凭借与多优质产区达成产地直采合作，实现源头直发。",
@@ -332,7 +334,7 @@ const productList = [
     },
     {
         "id": 9,
-        "imageUrl": "./sources/products/apple.png",
+        "imageUrl": ipPath + "/sources/products/apple.png",
         "title_zh": "苹果",
         "title_en": "apple",
         "description_zh": "全球核心产区优质苹果，链接中国市场，为消费者提供新鲜、健康的世界风味。",
