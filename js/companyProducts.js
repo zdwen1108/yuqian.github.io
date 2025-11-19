@@ -9,7 +9,7 @@ new MediaCarousel({
     items: [
         {
             type: 'image',
-            url: './sources/imgs/yuqian04.png',
+            url: './sources/imgs/yuqianTopImage.png',
             alt: ''
         },
     ],

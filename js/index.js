@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   new MediaCarousel({
     containerId: 'carouselContainer',
     width: '100vw',
-    autoPlay: true,
+    autoPlay: false,
     interval: 4000,
     showIndicators: true,
     showControls: true,
@@ -12,18 +12,20 @@ document.addEventListener('DOMContentLoaded', function () {
     items: [
       {
         type: 'image',
-        url: './sources/imgs/yuqian01.png',
-        alt: '水果'
+        url: './sources/imgs/carousel/carousel01.png',
       },
       {
         type: 'image',
-        url: './sources/imgs/yuqian02.png',
+        url: './sources/imgs/carousel/carousel02.png',
       },
       {
         type: 'image',
-        url: './sources/imgs/yuqian03.png',
-        alt: '水果'
-      }
+        url: './sources/imgs/carousel/carousel03.png',
+      },
+      {
+        type: 'image',
+        url: './sources/imgs/carousel/carousel04.png',
+      },
     ],
     // 基础配置（小屏幕默认）
     height: 'auto',

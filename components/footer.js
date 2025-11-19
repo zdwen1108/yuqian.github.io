@@ -469,6 +469,11 @@ class FooterComponent {
       margin: this.options.sectionDividerMargin,
       width: '100%',
     });
+    // 不存在备案信息隐藏分割线
+    const record_text = this.container.querySelector('.record-text');
+    if(!record_text){
+      divider.style.display = "none";
+    }
     
     // 下部区域
     const lower = this.container.querySelector('.footer-lower');

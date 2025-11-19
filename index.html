@@ -123,6 +123,8 @@
   <link rel="stylesheet" href="./css/companyProducts.css">
   <!-- 产品详情页 -->
   <link rel="stylesheet" href="./css/product_detail.css">
+  <!-- 媒体页面 -->
+  <link rel="stylesheet" href="./css/mediaPage.css">
 </head>
 
 <body>
@@ -168,7 +170,7 @@
     </div>
     <!-- 公司介绍 -->
     <div class="page-content " id="company_introduce" data-route="/about/company">
-      <!-- 公司介绍页面顶部北京图片 -->
+      <!-- 公司介绍页面顶部背景图片 -->
       <div id="introduceComponent"></div>
       <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
         <!-- 页面标题 -->
@@ -265,6 +267,7 @@
             </div>
             <!-- 统计数据 -->
             <div class="statistics">
+              <div></div>
               <div class="stat-item">
                 <div class="stat-number" id="statistic1">10+</div>
                 <div class="stat-label" id="statistic1Label">
@@ -285,19 +288,36 @@
                 </div>
               </div>
             </div>
+            <div style="display: flex;padding-top: 20px;"">
+              <div></div>
+              <div class="stat-item">
+                <div class="stat-number" id="statistic1">4500+</div>
+                <div class="stat-label" id="statistic1Label">
+                  <span class="en hidden">National high-quality producing areas include Xinjiang, Yunnan, Shaanxi, Anhui, etc. Among them, 2,000 mu of blueberries are planted in Yunnan, 500 mu of plums in Xinjiang, 1,000 mu of cherries in Shaanxi, and 1,000 mu of patented grapes in Anhui.</span>
+                  <span class="zh">全国优质产区新疆、云南、陕西、安徽等。其中，云南种植蓝莓 2000 亩，新疆种植西梅 500 亩，陕西种植车厘子 1000 亩，安徽种植专利葡萄 1000 亩。</span>
+                </div>
+              </div>
+
+              <div class="stat-divider"></div>
+
+              <div class="stat-item">
+                <div class="stat-number" id="statistic2">10+</div>
+                <div class="stat-label" id="statistic2Label">
+                  <span class="en hidden">The team with many years of experience in fruit sales has established regional offices in important regions across major continents such as North America, South America, Thailand, Australia and New Zealand.</span>
+                  <span class="zh">拥有多年果品销售经验团队，在北美、南美、泰国、澳新等各大洲重要区域设立区域办事处。</span>
+                </div>
+              </div>
+            </div>
 
           </div>
 
-          <!-- 新增寄语 -->
-          <!-- <div class="boss-quote mt-10 mb-6">
-            <div class="quote-mark text-primary text-4xl opacity-30">"</div>
-            <p class="text-xl md:text-2xl font-medium text-gray-700 italic mb-4">立消费之本，正果农之心</p>
-            <div class="quote-author text-right text-gray-600 font-semibold">—— 张明</div>
-          </div> -->
-
           <!-- 右侧图片 -->
           <div class="image-container" style="width: 55%;">
-            <img src="./sources/imgs/company.png" alt="" class="company-image" id="companyImage">
+            <img src="./sources/imgs/companyIntroduce/company.png" alt="" class="company-image" id="companyImage">
+            <div style="display: flex;justify-content: space-between; padding-top: 20px;">
+              <img src="./sources/imgs/companyIntroduce/production_area.jpg" alt="" class="company-image-min" id="companyImage">
+              <img src="./sources/imgs/companyIntroduce/production_sales.jpg" alt="" class="company-image-min" id="companyImage">
+            </div>
           </div>
         </div>
       </div>
@@ -520,8 +540,39 @@
     </div>
     <!-- 媒体资源库 -->
     <div class="page-content" id="media_sources" data-route="/media">
-      <h1>媒体资源库</h1>
-      <p>这是服务介绍内容...</p>
+      <!-- 顶部背景图 -->
+      <div id="mediaTopImage"></div>
+      <div style="padding:74px 80px;min-width: 1280px;max-width: 1920px;margin: 0 auto;">
+        <h1 class="section-title" id="pageTitle">
+          <span class="en hidden">Media Resource Library</span>
+          <span class="zh">媒体资源库</span>
+        </h1>
+        <div class="tabs">
+          <div class="tab active" data-type="image">图片</div>
+          <div class="tab" data-type="video">视频</div>
+        </div>
+
+        <!-- 图片网格（动态填充） -->
+        <div class="media-grid" id="image-grid">
+          <div class="loading">加载中...</div>
+        </div>
+
+        <!-- 视频网格（动态填充） -->
+        <div class="media-grid" id="video-grid" style="display: none;">
+          <div class="loading">加载中...</div>
+        </div>
+
+        <button class="view-more" id="view-more-btn">查看更多</button>
+      </div>
+      <!-- 媒体预览弹窗 -->
+      <div class="modal-overlay" id="media-modal">
+        <div class="modal-content">
+          <button class="modal-close" id="modal-close">&times;</button>
+          <div id="modal-body"></div>
+          <!-- 媒体信息栏（悬浮显示） -->
+          <div class="modal-meta" id="modal-meta"></div>
+        </div>
+      </div>
     </div>
     <!-- 加入我们 -->
     <div class="page-content " id="join_work" data-route="/join">
@@ -888,6 +939,8 @@
 <script src="./js/companyProducts.js"></script>
 <!-- 产品详情页 -->
 <script src="./js/productDetail.js"></script>
+<!-- 媒体资源页 -->
+<script src="./js/mediaPage.js"></script>
 <!-- 加入我们 -->
 <script src="./js/join.js"></script>
 <!-- 加载路由 -->
@@ -1072,7 +1125,7 @@
         text: '京ICP备17027549号-4'
       },
       {
-        image: 'https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b883a071545849c8af20d7f836427517.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=20251025105948DCEBDF0044F5D3C249C4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1761965989&x-signature=4OaHPqoFDk2%2B003dEKhhC3kK3R8%3D',
+        image: '',
         text: '京公网安备11010502052391号'
       }
     ]

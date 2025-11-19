@@ -1,4 +1,4 @@
-// 公司介绍页顶部图片
+// 公司详情页顶部图片
 new MediaCarousel({
     containerId: 'newsDetailTopImage',
     width: '100vw',
@@ -9,7 +9,7 @@ new MediaCarousel({
     items: [
         {
             type: 'image',
-            url: './sources/imgs/yuqian04.png',
+            url: './sources/imgs/yuqianTopImage.png',
             alt: ''
         },
     ],
