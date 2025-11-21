@@ -145,6 +145,7 @@ function openModal(item, type) {
         img.alt = item.title;
         img.className = 'modal-image';
         img.style.height = "680px";
+        img.style.objectFit = "cover";
         // 加载完成后确保居中显示
         img.onload = () => {
             modalBody.scrollTop = 0;
