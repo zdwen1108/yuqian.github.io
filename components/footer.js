@@ -115,7 +115,8 @@ class FooterComponent {
           text_en: '京公网安备11010502052391号',
           url: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502052391' 
         }
-      ]
+      ],
+      image: ''
     };
 
     // 合并用户配置
@@ -244,19 +245,24 @@ class FooterComponent {
         </p>`;
       }
       
-      html += `
-        <div class="social-item" data-index="${index}">
-          <a href="${social.url || '#'}" class="social-link" target="_blank" rel="noopener noreferrer">
-            ${socialContent}
-          </a>
-          <!-- 二维码气泡 (方向向下展示) -->
-          <div class="qrcode-bubble">
-            <div class="bubble-arrow"></div>
-            <img src="${social.qrcode}" alt="" class="qrcode-img">
+      if(!!socialContent)
+        html += `
+          <div class="social-item" data-index="${index}">
+            <a href="${social.url || '#'}" class="social-link" target="_blank" rel="noopener noreferrer">
+              ${socialContent}
+            </a>
+            <!-- 二维码气泡 (方向向下展示) -->
+            <div class="qrcode-bubble">
+              <div class="bubble-arrow"></div>
+              <img src="${social.qrcode}" alt="" class="qrcode-img">
+            </div>
           </div>
-        </div>
-      `;
-    });
+        `;
+      });
+      if(this.options.image)
+        html += `<div class="social-item">
+              <img src="${this.options.image}" alt="" style="width: 140px;height: 140px;">
+            </div>`
     
     rightContainer.innerHTML = html;
   }
