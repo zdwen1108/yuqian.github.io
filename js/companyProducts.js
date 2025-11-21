@@ -343,6 +343,7 @@ const productList = [
     }
 ];
 
+const lang = localStorage.getItem('language');
 // 2. 分页核心配置
 let producPageConfig = {
     currentPage: 1, // 当前页码
@@ -391,16 +392,16 @@ function renderProductsDetail(products) {
     let newDetailHTML = `
         <div class="new_title-container">
             <h1 class="new_main-title">
-                <span class="en hidden">${products.contentTitle_en ? products.contentTitle_en : products.title_en}</span>
-                <span class="zh">${products.contentTitle_zh ? products.contentTitle_zh : products.title_zh}</span>
+                <span class="en ${lang == 'zh' | !lang ? 'hidden' : ''}">${products.contentTitle_en ? products.contentTitle_en : products.title_en}</span>
+                <span class="zh ${lang == 'en' ? 'hidden' : ''}">${products.contentTitle_zh ? products.contentTitle_zh : products.title_zh}</span>
             </h1>
             <div class="new_title-line"></div>
         </div>`;
     if (!products["contentList"] || products["contentList"].length == 0) {
         newDetailHTML += `
             <p>
-                <span class="en hidden">${products.description_en}</span>
-                <span class="zh">${products.description_zh}</span>
+                <span class="en ${lang == 'zh' | !lang ? 'hidden' : ''}">${products.description_en}</span>
+                <span class="zh ${lang == 'en' ? 'hidden' : ''}">${products.description_zh}</span>
             </p>
             <img src="${products.imageUrl}" 
                 alt="" class="new_content-img">
@@ -412,15 +413,15 @@ function renderProductsDetail(products) {
                 case 'p':
                     newDetailHTML += `
                         <p style='text-align: ${item.textAlign ? item.textAlign : ''}'>
-                            <span class="en hidden">${item.text_en}</span>
-                            <span class="zh">${item.text_zh}</span>
+                            <span class="en ${lang == 'zh' | !lang ? 'hidden' : ''}">${item.text_en}</span>
+                            <span class="zh ${lang == 'en' ? 'hidden' : ''}">${item.text_zh}</span>
                         </p>`;
                     break;
                 case 'h2':
                     newDetailHTML += `
                         <h2 class="new_section-title" style='text-align: ${item.textAlign ? item.textAlign : ''};font-weight: 600;'>
-                            <span class="en hidden">${item.text_en}</span>
-                            <span class="zh">${item.text_zh}</span>
+                            <span class="en ${lang == 'zh' | !lang ? 'hidden' : ''}">${item.text_en}</span>
+                            <span class="zh ${lang == 'en' ? 'hidden' : ''}">${item.text_zh}</span>
                         </h2>`;
                     break;
                 case 'image':
@@ -487,7 +488,7 @@ function productRenderCards() {
         return;
     }
 
-    const lang = localStorage.getItem('language');
+    
     // 情况2：渲染当前页卡片（追加模式，不是替换）
     currentData.forEach(item => {
         const card = document.createElement("div");

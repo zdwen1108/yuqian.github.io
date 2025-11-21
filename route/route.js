@@ -73,13 +73,54 @@ const routeConfig = {
     activeClass: 'active',
     init: (params) => {
       if (params.id) loadNewsDetail(params.id);
+      const enElements = document.querySelectorAll('.en');
+      const zhElements = document.querySelectorAll('.zh');
+      const lang = localStorage.getItem('language');
+      if (lang == 'en') {
+        zhElements.forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        enElements.forEach(el => {
+          el.classList.remove('hidden');
+        });
+      } else {
+        zhElements.forEach(el => {
+          el.classList.remove('hidden');
+        });
+
+        enElements.forEach(el => {
+          el.classList.add('hidden');
+        });
+      }
     }
   },
   '/products/detail': {
     container: 'company_products_detail',
     activeClass: 'active',
     init: (params) => {
-      if (params.id) loadProductsDetail(params.id);
+      if (params.id)
+        loadProductsDetail(params.id);
+      const enElements = document.querySelectorAll('.en');
+      const zhElements = document.querySelectorAll('.zh');
+      const lang = localStorage.getItem('language');
+      if (lang == 'en') {
+        zhElements.forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        enElements.forEach(el => {
+          el.classList.remove('hidden');
+        });
+      } else {
+        zhElements.forEach(el => {
+          el.classList.remove('hidden');
+        });
+
+        enElements.forEach(el => {
+          el.classList.add('hidden');
+        });
+      }
     }
   },
   '/media': {
@@ -193,11 +234,11 @@ function switchPage(targetPath, params = {}, replace = false) {
   } else {
     window.history.pushState({ page: targetPath.slice(1), id: params.id }, '', `#${newHash}`)
   }
-  if(targetPath.includes("news/detail")){
+  if (targetPath.includes("news/detail")) {
     navbar.updateActiveItem('/news');
-  }else if(targetPath.includes("products/detail")){
+  } else if (targetPath.includes("products/detail")) {
     navbar.updateActiveItem('/products');
-  }else{
+  } else {
     navbar.updateActiveItem(targetPath);
   }
   // 5. 滚动到顶部
@@ -231,7 +272,7 @@ function initRouter() {
     // 从历史状态中获取页面标识，匹配路由
     const targetPath = page ? `/${page}` : DEFAULT_ROUTE;
     const params = { id: historyState.id }; // 传递详情页ID等参数
-    
+
     navbar.updateActiveItem(targetPath);
     switchPage(targetPath, params, false);
   });

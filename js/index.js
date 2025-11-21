@@ -246,5 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 页面加载时初始化路由
   window.addEventListener('load', scrollToTop);
+  // 监听页面刷新/关闭
+  window.addEventListener('beforeunload', function(e) {
+    this.localStorage.removeItem("language");
+    return '';
+  });
 });
 
